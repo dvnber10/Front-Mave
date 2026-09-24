@@ -1,10 +1,215 @@
-#btn-video{
-    margin-top: 3%;
-    width: 80%;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+.meditation-container {
+    background: transparent;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 20px 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e8ecf1;
+    font-family: 'Inter', system-ui, sans-serif;
+    position: relative;
 }
-#btn-random{
-    background-color: transparent;
-    color:  rgb(30, 105, 196);
-    border-radius: 100%;
-    margin-top: -5%;
+
+.meditation-container h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 10px 0 20px 0;
+    text-align: center;
+}
+/* (Sección de videos YouTube eliminada: ahora solo sistema de sonidos Freesound) */
+
+/* --- Panel sonido aleatorio Freesound (mockup glass) --- */
+.sound-panel {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 26px;
+    margin-bottom: 22px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sound-panel .kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7ff0cf;
+    font-weight: 700;
+}
+
+.sound-panel h2 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #f8fafc;
+}
+
+.sound-panel .dim {
+    color: #a6b1d6;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.btn-sound {
+    font-family: 'Inter', system-ui, sans-serif;
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    transition: all 0.2s ease;
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    color: #081022;
+    box-shadow: 0 10px 30px rgba(52, 211, 176, 0.35);
+    margin-top: 6px;
+}
+
+.btn-sound:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(52, 211, 176, 0.45);
+}
+
+.btn-sound:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.sound-now {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sound-title {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #f8fafc;
+}
+
+.sound-meta {
+    font-size: 13px;
+    color: #a6b1d6;
+}
+
+.sound-audio {
+    width: 100%;
+    margin-top: 6px;
+    accent-color: #34d3b0;
+}
+
+/* --- Sesión del audio elegido: cuenta regresiva + volver --- */
+.med-count {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(44px, 6vw, 58px);
+    font-weight: 800;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    color: #f8fafc;
+    margin: 6px 0;
+}
+
+.med-back {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.10);
+    color: #eef2ff;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 11px 24px;
+    cursor: pointer;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: all 0.2s ease;
+}
+
+.med-back:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.sound-panel .alert {
+    color: #ff7eb6;
+    font-size: 13px;
+}
+
+/* --- Lista elegible de 10 pistas --- */
+.sound-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-top: 6px;
+}
+
+.sound-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sound-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.sound-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, sans-serif;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sound-item:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.sound-item.sel {
+    border-color: rgba(52, 211, 176, 0.6);
+    background: rgba(52, 211, 176, 0.12);
+}
+
+.sound-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.sound-item-meta {
+    font-size: 12px;
+    color: #a6b1d6;
 }

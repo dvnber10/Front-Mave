@@ -1,13 +1,23 @@
 .four_zero_four_bg {
     background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: -10%;
-    width: 476%;
-    background-position: center;
-    margin-left: -190%;
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: #0d1a4a;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 26px 18px;
 }
 
 #h1-404{
-font-size: 60px;
+font-size: clamp(42px, 10vw, 60px);
 }
 
 #logo-404{
@@ -21,13 +31,11 @@ font-size: 60px;
 }
 
 #p-404{
-    font-size: 40px;
+    font-size: clamp(26px, 4vw, 40px);
     margin-top: -2px;
-    color: #1B5091;
+    color: #eef2ff;
 }
-html {
-    overflow: hidden; /* Oculta el scroll vertical */
-}
+/* (Se eliminó html{overflow:hidden} global: bloqueaba el scroll de TODA la app) */
 
 #logOut{
     text-align: center;
@@ -41,4 +49,22 @@ html {
 #gif-logOut{
     width: 300px;
     height: 300px;
+}
+
+/* Caja del mensaje 404 (mockup glass, era clase huérfana) */
+.contant_box_404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 18px 26px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    box-sizing: border-box;
 }

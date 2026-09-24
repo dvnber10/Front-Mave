@@ -1,74 +1,227 @@
-#print-logo {
-    margin-left: 39%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Lilita+One&display=swap');
 
-#print-h1 {
-    margin-right: 50%;
-}
-
-#print-vis header {
-    margin-top: 40%;
-}
-
-#description {
-    margin-bottom: 20px;
+.report-main-container {
+    background: transparent;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
-    margin-right: 30px;
+    flex-direction: column;
+    align-items: center;
+    color: #e8ecf1;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding-bottom: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
 }
 
-#description h2 {
-    margin: 5px 0;
-    margin-left: 30px;
+.report-content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.report-header-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.report-logo {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+}
+
+.report-title {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.report-subtitle {
+    font-size: 14px;
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+/* --- Leyenda de Categorías --- */
+.report-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 12px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.legend-item {
+    font-size: 13px;
+    color: #cbd5e1;
+}
+
+/* --- Contenedor de la Tabla con Scroll Fluido --- */
+.table-responsive-container {
+    width: 100%;
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 40px rgba(2, 6, 23, 0.4);
+    margin-bottom: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    text-align: left;
 }
 
 #table-title {
-    background-color: #ddd;
-    color: black;
+    background-color: rgba(27, 80, 145, 0.85);
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 #table-title th {
-    padding: 10px;
-    border: 2px solid #ddd;
-
-}
-
-th,
-td {
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
-th:first-child,
-td:first-child {
-    border-left: 1px solid #ddd;
-}
-
-th:last-child,
-td:last-child {
-    border-right: 1px solid #ddd;
-}
-
-.table1 {
-    max-height: 500px;
-    overflow-y: auto;
-    margin-bottom: 7%;
-}
-.button {
-    background-color: rgb(30, 105, 196);
-    color: #fff;
-    font-size: 20px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
+    padding: 14px 16px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
     letter-spacing: 0.5px;
+}
+
+th, td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 14px;
+    color: #e2e8f0;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* --- Botón Generar PDF --- */
+.button {
+    background: linear-gradient(135deg, #1e69c4 0%, #154c8f 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 14px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
     text-transform: uppercase;
-    margin-top: 10px;
     cursor: pointer;
     font-family: 'Lilita One', Times, serif;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 4px 12px rgba(30, 105, 196, 0.3);
+    transition: all 0.25s ease;
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #2578dc 0%, #1a59a7 100%);
+    transform: translateY(-2px);
+}
+
+.Loading {
+    display: block;
+    margin: 0 auto;
+    width: 45px;
+}
+
+/* --- Tiempo en actividades (reporte) --- */
+.report-activity {
+    width: 100%;
+    margin-top: 26px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.report-activity-title {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.report-activity .dim {
+    color: #a6b1d6;
+    font-size: 14px;
+    margin: 0;
+}
+
+.activity-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.activity-card span {
+    font-size: 12.5px;
+    color: #a6b1d6;
+}
+
+.activity-card b {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.activity-card small {
+    font-size: 12px;
+    color: #a6b1d6;
+}
+
+@media (max-width: 600px) {
+    .activity-cards {
+        grid-template-columns: 1fr;
+    }
 }

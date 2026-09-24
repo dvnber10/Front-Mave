@@ -1,33 +1,129 @@
-h1{
+.form-create h1{
     margin-top: 2%;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #eef2ff;
+    text-align: center;
 }
 
-.rp-cont{
-    margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+.form-create{
+  background-color: transparent;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 26px 22px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
   .form-cam {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 70%;
-    margin-bottom: -22px; /* Espacio entre cada campo */
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 12px; /* Espacio entre cada campo */
   }
   
-  label {
+  .form-cam label {
     flex: 1; /* Hace que el label ocupe todo el espacio disponible */
     text-align: left; /* Alinea el texto a la izquierda */
     font-size: 20px;
+    color: white;
   }
-  
-  input {
+
+  .form-cam input {
     flex: 2; /* Hace que el input ocupe el doble de espacio que el label */
+  }
+
+  /* Inputs glass del formulario (era clase huérfana) */
+  .form-cam-inp {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    padding: 13px 16px;
+    color: #fdfdfd;
+    font-size: 15px;
+    font-family: 'Inter', system-ui, sans-serif;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .form-cam-inp::placeholder {
+    color: #66718f;
+  }
+
+  .form-cam-inp:focus {
+    border-color: rgba(127, 240, 207, 0.7);
+    box-shadow: 0 0 0 4px rgba(52, 211, 176, 0.12);
+  }
+
+  .form-cam-inp[type="file"] {
+    padding: 10px 16px;
+    cursor: pointer;
   }
 
   #form-btn{
     margin-top: 20px;
     margin-bottom: 10px;
+  }
+
+  /* Vista previa de la imagen antes de subir */
+  .preview-wrap {
+    justify-content: center;
+  }
+
+  .preview-img {
+    width: 100%;
+    max-width: 420px;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.5);
+  }
+
+  .preview-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .preview-remove {
+    background: rgba(255, 126, 182, 0.15);
+    color: #ff7eb6;
+    border: 1px solid rgba(255, 126, 182, 0.45);
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 10px 22px;
+    cursor: pointer;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: all 0.2s ease;
+  }
+
+  .preview-remove:hover {
+    background: rgba(255, 126, 182, 0.28);
+  }
+
+  /* --- Móvil: apila etiqueta + campo, nada se desborda --- */
+  @media (max-width: 600px) {
+    .form-create {
+      padding: 20px 16px 32px;
+    }
+    .form-cam {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+    .form-cam label {
+      font-size: 15px;
+    }
+    .preview-img {
+      max-height: 200px;
+    }
   }

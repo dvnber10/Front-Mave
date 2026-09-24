@@ -1,50 +1,63 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Login.css";
 import Registro from "../components/Authentication/Registro";
 import InicioSession from "../components/Authentication/InicioSession";
 
 const Login = () => {
-    const [isSignUpActive, setIsSignUpActive] = useState(true);
+    /* true = registro visible (izquierda) · false = login visible */
+    const [isSignUpActive, setIsSignUpActive] = useState(false);
+    /* pulse = la gota se expande 0.6s mostrando el cambio y se contrae sola */
+    const [pulse, setPulse] = useState(false);
+    const timer = useRef(null);
 
-    const handleRegisterClick = () => {
-        setIsSignUpActive(true);
+    useEffect(() => () => clearTimeout(timer.current), []);
+
+    const firePulse = () => {
+        setPulse(true);
+        clearTimeout(timer.current);
+        timer.current = setTimeout(() => setPulse(false), 750);
     };
 
-    const handleLoginClick = () => {
-        setIsSignUpActive(false);
-    };
+    const handleLoginClick = () => { setIsSignUpActive(false); firePulse(); };
+    const handleRegisterClick = () => { setIsSignUpActive(true); firePulse(); };
+
     return (
         <>
-            <div className={`container ${isSignUpActive ? 'active' : ''}`}>
-                
+            <div className={`container${isSignUpActive ? ' active' : ''}${pulse ? ' pulse' : ''}`}>
                 <div className="form-container sing-up">
-                   <Registro />
+                    <Registro />
                 </div>
 
                 <div className="form-container sign-in">
                     <InicioSession />
                 </div>
-                <div className="toggle-container">
-                    <div className="toggle">
-                        <div className={`toggle-panel toggle-left ${isSignUpActive ? 'active': ''}`}>
-                            <h1>¡ Bienvenido a MAVE !</h1>
-                            <img src="./src/assets/logo.svg" alt="Logo" className="logo"></img>
-                            <p className="acronym">Mente en <br />
-                            Armonía <br />
-                            Vida en <br />
-                            Equilibrio
-                            </p>
-                            <button className="hidden" id="login" onClick={handleLoginClick} >Quiero <br/> Registrarme</button>
-                        </div>
-                        <div className={`toggle-panel toggle-right ${isSignUpActive ? '' : 'active'}`}>
-                            <h1>! Unete a MAVE !</h1>
-                            <img src="./src/assets/logo.svg" alt="Logo" className="logo"></img>
-                            <p className="p2">Completa el formulario con tu información personal</p>
-                            <button className="hidden" id="register" onClick={handleRegisterClick}>Ya tengo cuenta, quiero <br/>Ingresar</button>
-                        </div>
-                    </div>
+
+                {/* GOTA MAVE · único interruptor login ⇄ registro (mockup glass) */}
+                <div
+                    className="gota"
+                    onClick={isSignUpActive ? handleLoginClick : handleRegisterClick}
+                    role="button"
+                    aria-label={isSignUpActive ? "Gota MAVE: volver al ingreso" : "Gota MAVE: cambiar a registro"}
+                >
+                    {isSignUpActive ? (
+                        <>
+                            <h2>¿Ya tienes cuenta?</h2>
+                            <p className="gota-small-text">Toca aquí · Ingresar</p>
+                        </>
+                    ) : (
+                        <>
+                            <h2>¿No tienes cuenta?</h2>
+                            <p className="gota-small-text">Toca aquí · MAVE</p>
+                        </>
+                    )}
                 </div>
             </div>
+            <p className="login-pro">
+              ¿Eres psicólogo? <Link to="/RegistroProfesional">Regístrate aquí</Link>
+              {" · "}
+              <Link to="/Estado">Estado del sistema</Link>
+            </p>
         </>
     );
 };

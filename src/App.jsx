@@ -22,6 +22,20 @@ import AllUserAdmin from "./routes/AllUserAdmin";
 import OneUsers from "./components/Users/User";
 import Mindfulness from "./routes/Mindfulness";
 import Meditation from "./routes/Meditation"
+import Bienestar from "./routes/Bienestar"
+import Yoga from "./routes/Yoga"
+import Respiracion from "./routes/Respiracion"
+import Escaneo from "./routes/Escaneo"
+import Caminata from "./routes/Caminata"
+import Profesionales from "./routes/Profesionales"
+import Perfil from "./routes/Perfil"
+import MisPacientes from "./routes/MisPacientes"
+import Chat from "./routes/Chat"
+import Admin from "./routes/Admin"
+import RegistroProfesional from "./routes/RegistroProfesional"
+import Estado from "./routes/Estado"
+import GraphicsActivity from "./components/Graphics/GraphicsActivity"
+import GraphicsWellbeing from "./components/Graphics/GraphicsWellbeing"
 import Report from "./routes/Report"
 
 const App = () => {
@@ -50,6 +64,8 @@ const App = () => {
           <Route path="/GraphicsInitial" element={<GraphicsInitial />} />
           {/** ruta para el componente GraphicsInitial */}
           <Route path="/GraphicsMood" element={<GraphicsMood />} />
+          <Route path="/GraphicsActivity" element={<GraphicsActivity />} />
+          <Route path="/GraphicsWellbeing" element={<GraphicsWellbeing />} />
           {/** ruta para el componente GraphicsMood */}
         <Route path="/Texts" element={<Texts />} />
         {/** ruta para los Textos */}
@@ -68,7 +84,21 @@ const App = () => {
           <Route path="/OneUser/:id" element= {<OneUsers/>}/>
           <Route path="/Mindfulness" element= {<Mindfulness/>}/>
           <Route path="/Meditation" element= {<Meditation/>}/>
+        <Route path="/Bienestar" element= {<Bienestar/>}/>
+        <Route path="/Yoga" element= {<Yoga/>}/>
+        <Route path="/Respiracion" element= {<Respiracion/>}/>
+        <Route path="/Escaneo" element= {<Escaneo/>}/>
+        <Route path="/Caminata" element= {<Caminata/>}/>
+        <Route path="/Profesionales" element= {<Profesionales/>}/>
+        <Route path="/Perfil" element= {<Perfil/>}/>
+        <Route path="/MisPacientes" element= {<MisPacientes/>}/>
+        <Route path="/Chat" element= {<Chat/>}/>
+        <Route path="/Chat/:peerId" element= {<Chat/>}/>
+        <Route path="/Admin" element= {<Admin/>}/>
+        <Route path="/RegistroProfesional" element= {<RegistroProfesional/>}/>
+        <Route path="/Estado" element= {<Estado/>}/>
         <Route path="/Report" element={<Report/>}></Route>
+        <Route path="/Report/:patientId" element={<Report/>}></Route>
       </Routes>
     </Router>
   );

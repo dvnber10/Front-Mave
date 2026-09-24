@@ -1,12 +1,4 @@
-
-.alert {
-    color: rgb(70, 50, 46) !important;
-    font-weight: 300;
-    font-size: 14px !important;
-}
-
-.eye {
-    width: 50%;
-    margin-top: -8%;
-    margin-left: 50%;
-}
+/* MAVE · alert.css legacy neutralizado.
+   Los estilos de alertas y ojo viven en src/styles/Login.css
+   (mockup glass: .alert #ff7eb6, .eye 20px).
+   Este archivo se conserva vacío para no romper el import de InicioSession.jsx. */

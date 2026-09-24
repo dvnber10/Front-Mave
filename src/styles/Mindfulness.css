@@ -1,22 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Lilita+One&display=swap');
+
+.mid-container {
+    background: transparent;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e8ecf1;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.mid-container h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #f8fafc;
+    margin: 10px 0 5px 0;
+    text-align: center;
+}
+
+.mid-container h2 {
+    font-size: clamp(14px, 2vw, 16px);
+    font-weight: 500;
+    color: #94a3b8;
+    margin: 0 0 25px 0;
+    text-align: center;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --- Rejilla de Opciones --- */
 #space-mind {
-    margin-top: -10%;
-    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 18px;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
 
-.space-option label {
+/* --- Tarjetas Estilo Glassmorphism (Coherentes con el resto de la app) --- */
+#space-mind .space-option {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14px;
+    text-align: left;
+    width: 100%;
+    min-height: 160px;
+    padding: 24px;
+    color: #eef2ff;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    box-sizing: border-box;
+}
+
+#space-mind .space-option:hover,
+#space-mind .space-option:focus {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 28px 80px rgba(2, 6, 23, 0.65);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.option-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    padding: 10px;
+    object-fit: contain;
+    background: rgba(56, 189, 248, 0.15);
+}
+
+#space-mind .space-option label {
     display: block;
-    text-align: center;
-  }
-
-#info{
-    background-color: white;
-    color:  rgb(30, 105, 196);
+    text-align: left;
+    margin: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #eef2ff;
+    cursor: pointer;
 }
 
-#space-mind{
-    margin-top: -8%;
-    margin-bottom: 10px;
+/* Tarjeta especial "Saber más" */
+#info {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+#info:hover {
+    background: rgba(56, 189, 248, 0.2);
+}
+
+/* --- Actividad elegida para la sesión --- */
+.mind-hint {
+    font-size: 14px;
+    color: #a6b1d6;
+    text-align: center;
+    margin: 0 0 4px 0;
+}
+
+#space-mind .space-option.sel {
+    border-color: rgba(139, 155, 255, 0.6);
+    background: rgba(139, 155, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+.mind-player {
+    width: 100%;
+    max-width: 650px;
+    margin-top: 22px;
+    scroll-margin-top: 90px;
+}
+
+/* --- Media Queries para Responsividad Móvil --- */
+@media (max-width: 900px) {
+    #space-mind {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #space-mind {
+        grid-template-columns: 1fr;
+    }
 }

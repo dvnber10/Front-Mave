@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+/* ============================================================
+   MAVE · Registro único profesional (una sola capa)
+   Clases únicas .regpro-* (sin colisiones globales).
+   ============================================================ */
+
+.regpro-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 18px 60px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #eef2ff;
+    overflow-y: auto;
+}
+
+.regpro-card {
+    width: 100%;
+    max-width: 560px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 34px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.regpro-kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8b9bff;
+    font-weight: 700;
+}
+
+.regpro-card h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    margin: 0;
+}
+
+.regpro-dim {
+    color: #a6b1d6;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.regpro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.regpro-form label {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #a6b1d6;
+    margin: 6px 0 0 2px;
+}
+
+.regpro-form input,
+.regpro-form textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    padding: 13px 16px;
+    color: #eef2ff;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.regpro-form textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+}
+
+.regpro-form input::placeholder,
+.regpro-form textarea::placeholder {
+    color: #66718f;
+}
+
+.regpro-form input:focus,
+.regpro-form textarea:focus {
+    border-color: rgba(127, 240, 207, 0.7);
+    box-shadow: 0 0 0 4px rgba(52, 211, 176, 0.12);
+}
+
+.regpro-ok {
+    color: #7ff0cf;
+    font-size: 13.5px;
+    margin: 0;
+}
+
+.regpro-error {
+    color: #ff7eb6;
+    font-size: 13.5px;
+    margin: 0;
+}
+
+.regpro-btn {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    margin-top: 8px;
+    background: linear-gradient(120deg, #8b9bff, #34d3b0);
+    color: #081022;
+    box-shadow: 0 10px 30px rgba(139, 155, 255, 0.35);
+}
+
+.regpro-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.regpro-back {
+    text-align: center;
+    color: #8b9bff;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-top: 6px;
+}

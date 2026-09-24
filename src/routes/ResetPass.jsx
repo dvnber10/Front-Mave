@@ -21,7 +21,7 @@ const ForgotPassword = () => {
     })
 
     return (
-        <div className="rp-cont">
+        <div className="reset-page">
             <form onSubmit={onSubmit}>
                 <h1>Recuperar Contraseña</h1>
                 <span>Ingresa tu correo electrónico</span>

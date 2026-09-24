@@ -77,7 +77,7 @@ const InitialQuestions = () => {
   };
 
   return (
-    <div className="rp-cont">
+    <div className="iq-page">
       <header>
         <img src="./src/assets/logo.svg" alt="Logo" className="logo"></img>
         <span className="mave">MAVE</span>

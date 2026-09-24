@@ -1,16 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom"; // °3°useNavigate para poder navegar entre pestañas
 import Cookies from "universal-cookie"; // °° para validar si esta o no logeado
 import Swal from "sweetalert2";
 import Navbar from "../Navbar";
 import "../../styles/Creation.css";
 import { SetArticle } from "../../hooks/Article";
+import BackButton from "../BackButton";
 
 const Creation = () => {
   const navigate = useNavigate(); // °3°useNavigate para poder navegar entre pestañas
   const [title, setTitle] = useState("");
   const [resume, setResume] = useState("");
   const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  /* Vista previa local de la imagen antes de subir */
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+    } else {
+      setImage(null);
+      setPreview(null);
+    }
+  };
+
+  useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
+
+  const fileRef = useRef(null);
+
+  /* Quitar la imagen si te equivocas: limpia estado, preview e input */
+  const clearImage = () => {
+    if (preview) URL.revokeObjectURL(preview);
+    setImage(null);
+    setPreview(null);
+    if (fileRef.current) fileRef.current.value = "";
+  };
   const [link, setLink] = useState("");
   const [publicationDate, setPublicationDate] = useState("");
 
@@ -52,10 +78,12 @@ const Creation = () => {
   }
 
   return (
-    <div className="rp-cont">
+    <div >
       <Navbar />
-      <h1>Nuevo Recurso</h1>
-      <form onSubmit={handleSubmit}>
+      <BackButton />
+      
+      <form onSubmit={handleSubmit} className="form-create">
+        <h1>Nuevo Recurso</h1>
         <div className="form-cam">
           <label htmlFor="title">Título:</label>
           <input className="form-cam-inp"
@@ -86,12 +114,21 @@ const Creation = () => {
         <div className="form-cam">
           <label htmlFor="image">Imagen:</label>
           <input
+            ref={fileRef}
             type="file"
             id="image"
             accept="image/png, image/jpeg" // Acepta archivos PNG y JPEG
-            onChange={(e) => setImage(e.target.files[0])} // Almacena el archivo de imagen
+            onChange={handleImage}
           />
         </div>
+        {preview && (
+          <div className="form-cam preview-wrap">
+            <img src={preview} className="preview-img" alt="Vista previa de la imagen" />
+            <button type="button" className="preview-remove" onClick={clearImage}>
+              ✕ Quitar imagen
+            </button>
+          </div>
+        )}
         <div className="form-cam">
           <label htmlFor="publicationDate">Fecha de publicación:</label>
           <input className="form-cam-inp"

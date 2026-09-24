@@ -1,159 +1,253 @@
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
 
-.lilita-one-regular {
-  font-family: "Lilita One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+/* ============================================================
+   MAVE · Test inicial / Encuesta (mockup glass, una sola capa)
+   Todo con alcance .iq-page: cero fugas a otras pantallas.
+   Clases reales: header > img.logo + span.mave · h1 ·
+   Instrucciones (h2 + p + button) · .radio-input > .info
+   (.question/.steps) + .qbar + .opcion(input+label) + .botones
+   (.boton-quest).
+   ============================================================ */
+
+.iq-page {
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 26px 26px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #eef2ff;
 }
 
-:root {
-  background-color: #272020;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+/* ---------- Marca superior ---------- */
+.iq-page header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
-.rp-cont {
-  background: #60C8B3;
-  border-radius: 30px;
-  box-shadow: 0 5px 15px #c9d6ff;
-  position: relative;
-  overflow: hidden;
-  width: 900px;
-  max-width: 100%;
-  min-height: 520px;
-  font-family: "Lilita One", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  color: #1B5091;
+.iq-page header .logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  /* Alinea los elementos verticalmente */
-  font-weight: bold;
-  unicode-bidi: isolate;
+.iq-page header .mave {
+    margin: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: 0.5px;
+    color: #eef2ff;
 }
 
-.logo {
-  width: 55px;
-  height: auto;
+.iq-page > h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #eef2ff;
+    margin: 0 0 22px;
+    text-align: center;
 }
 
-.mave {
-  margin-left: 10px;
-  /* Espacio entre el logo y el texto "MAVE" */
-  font-size: 1.1rem;
-  /* Tamaño de fuente ajustable según sea necesario */
+/* ---------- Instrucciones (pantalla previa) ---------- */
+.iq-page > h2 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    text-align: center;
 }
 
-h1 {
-  margin-bottom: 10px;
-  /* Reducir el margen inferior del h1 */
+.iq-page > p {
+    max-width: 620px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 28px 30px;
+    font-size: 15px;
+    line-height: 2;
+    color: #a6b1d6;
+    margin: 0 0 22px;
+    box-sizing: border-box;
 }
 
-h2 {
-  margin-top: 0;
-  /* Establecer el margen superior del h2 a 0 para reducir el espacio */
-  align-items: center;
+.iq-page > button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 44px;
+    transition: all 0.2s ease;
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    color: #081022;
+    box-shadow: 0 10px 30px rgba(52, 211, 176, 0.35);
 }
 
-h3 {
-  margin-top: 0;
-  /* Establecer el margen superior del h2 a 0 para reducir el espacio */
-  align-items: left;
+.iq-page > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(52, 211, 176, 0.45);
 }
 
-#confirmar {
-  margin-top: 20px;
+/* ---------- Tarjeta del cuestionario ---------- */
+.radio-input {
+    width: 100%;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 44px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .radio-input input {
-  display: none;
-}
-
-.radio-input {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  background: #60C8B3;
-  color: #1B5091;
-  border-radius: 10px;
-  box-shadow: 0px 100px 500px 10px #1B5091;
-  width: 420px;
+    display: none;
 }
 
 .info {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 2px;
 }
 
-.question {
-  color: #1B5091;
-  font-size: 1rem;
-  line-height: 1rem;
-  font-weight: 800;
+/* Temporizador */
+.info:first-of-type .question {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7ff0cf;
+    font-weight: 700;
+}
+
+/* Pregunta actual */
+.info .question {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: #eef2ff;
+    margin: 14px 0 6px;
 }
 
 .steps {
-  padding: 4px;
-  color: #1B5091;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 12px;
-  font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    background: rgba(139, 155, 255, 0.15);
+    color: #8b9bff;
 }
 
-.radio-input label {
-  display: flex;
-  background-color: #fff;
-  padding: 14px;
-  margin: 8px 0 0 0;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 1px solid rgba(187, 187, 187, 0.164);
-  color: #1B5091;
-  transition: 0.3s ease;
+/* ---------- Barra de progreso ---------- */
+.qbar {
+    height: 8px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    margin: 4px 0 10px;
 }
 
-.radio-input input:checked+label {
-  border-color: #CE3375;
-  color: #f7f7f7;
-  background-color: rgba(60, 58, 212, 0.26);
-
+.qbar i {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #34d3b0, #8b9bff);
+    transition: width 0.3s ease;
 }
 
+/* ---------- Opciones ---------- */
+.opcion label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.05);
+    color: #eef2ff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    margin: 0;
+    font-weight: 500;
+}
+
+.opcion label:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.radio-input input:checked + label {
+    border-color: rgba(127, 240, 207, 0.6);
+    background: rgba(52, 211, 176, 0.12);
+    color: #eef2ff;
+}
+
+/* ---------- Botones ---------- */
 .botones {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
 }
 
 .boton-quest {
-  cursor: pointer;
-  border: 1px solid rgba(187, 187, 187, 0.164);
-  font-size: 10px important;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    width: 100%;
+    transition: all 0.2s ease;
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    color: #081022;
+    box-shadow: 0 10px 30px rgba(52, 211, 176, 0.35);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .boton-quest:hover {
-  background-color: #CE3375;
-  border: 1px solid #1B5091;
-  transition: 0.3s ease;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(52, 211, 176, 0.45);
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    border: none;
 }
 
+@media (max-width: 600px) {
+    .radio-input {
+        padding: 28px 22px;
+    }
+    .iq-page > p {
+        padding: 22px;
+    }
+}

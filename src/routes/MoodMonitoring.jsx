@@ -5,6 +5,7 @@ import Cookies from "universal-cookie";
 import Swal from 'sweetalert2';
 import Navbar from "../components/Navbar";
 import { SendScoreHab } from "../hooks/Question";
+import BackButton from "../components/BackButton";
 
 const MoodMonitoring = () => {
   const navigate = useNavigate();
@@ -46,9 +47,10 @@ const MoodMonitoring = () => {
   }
 
   return (
-    <div className="rp-cont">
+    <div>
       <Navbar />
-      
+      <BackButton />
+      <div className="rp-cont">
       <h1 id="h1-seguimiento">Seguimiento ánimico</h1>
       <h2> ¿Cómo calificarías tu ánimo el día de hoy? </h2>
       <p>Por favor da clic en la cara que más represente tu estado de ánimo a lo largo del día, después da clic en el botón <br/> "Confirmar respuesta" </p>
@@ -156,7 +158,7 @@ const MoodMonitoring = () => {
       <button onClick={handleConfirmarRespuesta}>
         Confirmar Respuesta
       </button>
-
+    </div>
     </div>
   );
 };

@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+/* ============================================================
+   MAVE · Perfil de usuario (mockup glass, una sola capa)
+   Clases únicas .perf-* (sin colisiones globales).
+   ============================================================ */
+
+.perf-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 26px 26px 60px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #eef2ff;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+
+.perf-card {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.perf-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.perf-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 22px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: linear-gradient(135deg, #34d3b0, #8b9bff);
+    color: #081022;
+    flex-shrink: 0;
+}
+
+.perf-h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.perf-h2 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.perf-dim {
+    color: #a6b1d6;
+    font-size: 14px;
+    margin: 4px 0 0;
+}
+
+.perf-form,
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.perf-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #a6b1d6;
+    margin: 6px 0 0 2px;
+}
+
+.perf-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    padding: 14px 16px;
+    color: #eef2ff;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.perf-input::placeholder {
+    color: #66718f;
+}
+
+.perf-input:focus {
+    border-color: rgba(127, 240, 207, 0.7);
+    box-shadow: 0 0 0 4px rgba(52, 211, 176, 0.12);
+}
+
+.perf-btn {
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+.perf-btn.primary {
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    color: #081022;
+    border: none;
+    box-shadow: 0 10px 30px rgba(52, 211, 176, 0.35);
+}
+
+.perf-btn.primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.perf-btn.ghost {
+    background: rgba(255, 255, 255, 0.10);
+    color: #eef2ff;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.perf-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.perf-ok {
+    color: #7ff0cf;
+    font-size: 13.5px;
+    margin: 0;
+}
+
+.perf-error {
+    color: #ff7eb6;
+    font-size: 13.5px;
+    margin: 0;
+}
+
+.perf-area {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.perf-verified {
+    align-self: flex-start;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(52, 211, 176, 0.15);
+    color: #7ff0cf;
+    border: 1px solid rgba(52, 211, 176, 0.45);
+}
+
+/* Vista previa del documento antes de subir */
+.perf-preview {
+    width: 100%;
+    max-width: 320px;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.5);
+}

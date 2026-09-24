@@ -1,9 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Lilita+One&display=swap');
+
+/* --- Contenedor Principal --- */
+.rp-cont {
+    background: transparent;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px;
+    font-family: "Lilita One", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    gap: 30px;
+    color: #e8ecf1;
+}
+
+.rp-cont h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #eef2ff;
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+/* --- Contenedor de Opciones (Graphics Grid / Flex) --- */
 #space-graphics {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-  }
-  
-  #space-graphics .space-option {
-    margin-right: 20px;
-margin-left: 20px;
-  }
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 10px;
+}
+
+#space-graphics > a {
+    text-decoration: none;
+    color: #eef2ff;
+    flex: 1 1 280px; /* Se adaptan fluidamente en PC y móvil */
+    max-width: 350px;
+}
+
+/* --- Tarjetas Estilo Glassmorphism (Idénticas al Dashboard) --- */
+#space-graphics .space-option {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14px;
+    text-align: left;
+    width: 100%;
+    min-height: 172px;
+    padding: 24px;
+    color: #eef2ff;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    box-sizing: border-box;
+    margin: 0; /* Limpiamos el auto antiguo que rompía la estructura */
+}
+
+#space-graphics .space-option:hover,
+#space-graphics .space-option:focus {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 28px 80px rgba(2, 6, 23, 0.65);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+/* --- Iconos y Etiquetas --- */
+.option-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    padding: 12px;
+    object-fit: contain;
+    background: rgba(52, 211, 176, 0.16);
+}
+
+/* Tintes personalizados opcionales por tarjeta */
+#space-graphics > a:nth-child(1) .option-icon { background: rgba(52, 211, 176, 0.16); }
+#space-graphics > a:nth-child(2) .option-icon { background: rgba(255, 126, 182, 0.16); }
+#space-graphics > a:nth-child(3) .option-icon { background: rgba(139, 155, 255, 0.16); }
+#space-graphics > a:nth-child(4) .option-icon { background: rgba(255, 206, 122, 0.16); }
+
+#space-graphics .space-option label {
+    margin: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #eef2ff;
+    cursor: pointer;
+}

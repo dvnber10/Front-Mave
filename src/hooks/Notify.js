@@ -1,5 +1,5 @@
 import {  useQuery } from '@tanstack/react-query'
-import { GetNotify, SendMensage } from '../querys/Notify.query'
+import { GetNotify, SendMensage, GetDailySuggestion } from '../querys/Notify.query'
 
 export function GetNotifyAdd(id) {
     return useQuery({
@@ -11,5 +11,11 @@ export function setMenssage() {
     return useQuery({
         queryKey: ["sendMenssage"],
         queryFn: async()=> SendMensage()
+    })
+}
+export function GetDailySuggestionData(id) {
+    return useQuery({
+        queryKey: ["dailySuggestion", id],
+        queryFn: async()=> await GetDailySuggestion(id)
     })
 }

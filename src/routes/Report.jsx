@@ -1,145 +1,250 @@
-import { React, useEffect } from "react";
-import "../styles/Table.css"
+import React, { useEffect } from "react";
+import "../styles/Table.css";
 import Navbar from "../components/Navbar";
 import Cookies from "universal-cookie";
-import { GetReportInitial } from "../hooks/Grafics";
-import html2canvas from "html2canvas";
+import { GetReportInitial, GetActivityTimeData, GetClinicalReportData } from "../hooks/Grafics";
 import jsPDF from "jspdf";
 import { username } from "../querys/User.query";
 import "jspdf-autotable";
+import { useNavigate, useParams } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 function Report() {
-    const cook = new Cookies()
-    let idUsuario = cook.get('id')
+    const navigate = useNavigate();
+    const cook = new Cookies();
+    let idUsuario = cook.get('id');
+    const { patientId } = useParams();
+    const effId = patientId || idUsuario;
 
     useEffect(() => {
-        if (!cook) {
-            navigate('/time-out') // Hay que crear la ruta time out que es el cierre de sesioón
+        if (!cook.get('id')) {
+            navigate('/time-out');
         }
-    }, [])
-    const { data: result, isSuccess, isLoading } = GetReportInitial(idUsuario)
-    const questions = isSuccess ? result.data.question : []
-    const answer = isSuccess ? result.data.answer : []
-    const score = isSuccess ? result.data.score : []
-    const respuestas = [
-        { opcion: isSuccess && questions[0], respuesta: isSuccess && answer[0], puntaje: isSuccess && score[0] },
-        { opcion: isSuccess && questions[1], respuesta: isSuccess && answer[1], puntaje: isSuccess && score[1] },
-        { opcion: isSuccess && questions[2], respuesta: isSuccess && answer[2], puntaje: isSuccess && score[2] },
-        { opcion: isSuccess && questions[3], respuesta: isSuccess && answer[3], puntaje: isSuccess && score[3] },
-        { opcion: isSuccess && questions[4], respuesta: isSuccess && answer[4], puntaje: isSuccess && score[4] },
-        { opcion: isSuccess && questions[5], respuesta: isSuccess && answer[5], puntaje: isSuccess && score[5] },
-        { opcion: isSuccess && questions[6], respuesta: isSuccess && answer[6], puntaje: isSuccess && score[6] },
-        { opcion: isSuccess && questions[7], respuesta: isSuccess && answer[7], puntaje: isSuccess && score[7] },
-        { opcion: isSuccess && questions[8], respuesta: isSuccess && answer[8], puntaje: isSuccess && score[8] },
-        { opcion: isSuccess && questions[9], respuesta: isSuccess && answer[9], puntaje: isSuccess && score[9] },
-        { opcion: isSuccess && questions[10], respuesta: isSuccess && answer[10], puntaje: isSuccess && score[10] },
-        { opcion: isSuccess && questions[11], respuesta: isSuccess && answer[11], puntaje: isSuccess && score[11] },
-        { opcion: isSuccess && questions[12], respuesta: isSuccess && answer[12], puntaje: isSuccess && score[12] },
-        { opcion: isSuccess && questions[13], respuesta: isSuccess && answer[13], puntaje: isSuccess && score[13] },
-        { opcion: isSuccess && questions[14], respuesta: isSuccess && answer[14], puntaje: isSuccess && score[14] },
-        { opcion: isSuccess && questions[15], respuesta: isSuccess && answer[15], puntaje: isSuccess && score[15] },
-        { opcion: isSuccess && questions[16], respuesta: isSuccess && answer[16], puntaje: isSuccess && score[16] },
-        { opcion: isSuccess && questions[17], respuesta: isSuccess && answer[17], puntaje: isSuccess && score[17] },
-        { opcion: isSuccess && questions[18], respuesta: isSuccess && answer[18], puntaje: isSuccess && score[18] },
-        { opcion: isSuccess && questions[19], respuesta: isSuccess && answer[19], puntaje: isSuccess && score[19] },
-        { opcion: isSuccess && questions[20], respuesta: isSuccess && answer[20], puntaje: isSuccess && score[20] },
-        { opcion: isSuccess && questions[21], respuesta: isSuccess && answer[21], puntaje: isSuccess && score[21] },
-        { opcion: isSuccess && questions[22], respuesta: isSuccess && answer[22], puntaje: isSuccess && score[22] },
-        { opcion: isSuccess && questions[23], respuesta: isSuccess && answer[23], puntaje: isSuccess && score[23] },
-    ];
+    }, [cook, navigate]);
+
+    const { data: result, isSuccess, isLoading } = GetReportInitial(effId);
+    const actQuery = GetActivityTimeData(effId);
+    const actData = actQuery.isSuccess ? actQuery.data.data : null;
+    const actLoading = actQuery.isLoading;
+    const clinQuery = GetClinicalReportData(effId);
+    const clinData = clinQuery.isSuccess ? clinQuery.data.data : null;
+    const clinLoading = clinQuery.isLoading;
+
+    const fmtHMS = (s) => {
+        s = s || 0;
+        const h = Math.floor(s / 3600);
+        const m = Math.floor((s % 3600) / 60);
+        return h > 0 ? `${h}h ${m}m` : `${m}m ${s % 60}s`;
+    };
+
+    const questions = isSuccess && result?.data?.question ? result.data.question : [];
+    const answer = isSuccess && result?.data?.answer ? result.data.answer : [];
+    const score = isSuccess && result?.data?.score ? result.data.score : [];
+
+    // Generación dinámica y limpia del arreglo de respuestas sin repetir código
+    const respuestas = questions.map((q, index) => ({
+        opcion: q,
+        respuesta: answer[index] || "-",
+        puntaje: score[index] !== undefined ? score[index] : "-"
+    }));
 
     const generatePDF = () => {
         const doc = new jsPDF();
-        const pageHeight = doc.internal.pageSize.height;
         const pageWidth = doc.internal.pageSize.width;
         
-        // Set the title and other details
-        const title = `Reporte de estadísticas del usuario ${username}`;
+        const title = `Reporte de estadísticas`;
         const ach = "MAVE";
-        const description = [
-            { text: "D: Dominante" },
-            { text: "I: Influyente" },
-            { text: "S: Estable" },
-            { text: "C: Concienzudo" }
-        ];
 
-        // Add title
-        
-        doc.setFontSize(26);
-        doc.text(title, pageWidth / 2, 20, { align: 'center' });
+        doc.setFontSize(24);
+        doc.text(ach, pageWidth / 2, 15, { align: 'center' });
 
-        // add Achronium
-        doc.setFontSize(32)
-        doc.text(ach,pageWidth / 2, 10, { align: 'center' });
-        // Add description
-        doc.setFontSize(12);
-        description.forEach((desc, i) => {
-            doc.text(desc.text, 10, 30 + i * 10);
-        });
+        doc.setFontSize(14);
+        doc.text(title, pageWidth / 2, 23, { align: 'center' });
 
-        // Define columns and rows for the table
-        const columns = ["Opcion N°", "Respuesta", "Puntaje"];
+        // Descripción de categorías en el PDF
+        doc.setFontSize(10);
+        doc.text("D: Dominante  |  I: Influyente  |  S: Estable  |  C: Concienzudo", pageWidth / 2, 32, { align: 'center' });
+
+        const columns = ["Opción N°", "Respuesta", "Puntaje"];
         const rows = respuestas.map(rta => [rta.opcion, rta.respuesta, rta.puntaje]);
 
-        // Add table
         doc.autoTable({
             head: [columns],
             body: rows,
-            startY: 70, // Position the table below the description
+            startY: 40,
             theme: 'grid',
-            margin: { top: 10 },
+            headStyles: { fillColor: [27, 80, 145] },
+            margin: { top: 10, left: 14, right: 14 },
         });
+
+        doc.autoTable({
+            head: [["Actividad", "Total"]],
+            body: [
+                ["Meditación total", `${fmtHMS(actData?.meditationSeconds)} (${actData?.meditationSessions ?? 0} sesiones)`],
+                ["Ánimos registrados", String(actData?.moodsCount ?? 0)],
+                ["Hábitos completados", String(actData?.habitsCount ?? 0)],
+                ...(actData?.last7Days || []).map(d => [`Meditación ${d.date}`, fmtHMS(d.seconds)]),
+            ],
+            startY: doc.lastAutoTable.finalY + 14,
+            theme: 'grid',
+            headStyles: { fillColor: [27, 80, 145] },
+            margin: { top: 10, left: 14, right: 14 },
+        });
+
+        if (clinData) {
+            doc.autoTable({
+                head: [["Reporte clínico", clinData.patientName || ""]],
+                body: [
+                    ["Último PHQ-4", clinData.lastPhq4 ? `${clinData.lastPhq4.total}/12 (${clinData.lastPhq4.band}) el ${clinData.lastPhq4.date}` : "Sin datos"],
+                    ["Depresión / Ansiedad", clinData.lastPhq4 ? `D ${clinData.lastPhq4.d} · A ${clinData.lastPhq4.a}` : "-"],
+                    ["Días con ánimo (30d)", String(clinData.daysMood30 ?? 0)],
+                    ["Días con hábitos (30d)", String(clinData.daysHabits30 ?? 0)],
+                    ...(clinData.phq4History || []).map(p => [`PHQ-4 ${p.date}`, `D ${p.d} · A ${p.a} · T ${p.total}`]),
+                    ...(clinData.recentHabits || []).slice(0, 10).map(h => [`Hábito ${h.date}`, `${h.question} → ${h.answer}`]),
+                ],
+                startY: doc.lastAutoTable.finalY + 14,
+                theme: 'grid',
+                headStyles: { fillColor: [27, 80, 145] },
+                margin: { top: 10, left: 14, right: 14 },
+            });
+        }
 
         doc.save("Estadistic_Report.pdf");
     };
 
     return (
-        <>
-            <header>
-                <Navbar />
-            </header>
-            <div id="print-vis" className="table1">
-                <div id="complete">
+        <div>
+            <Navbar />
+            <BackButton />
+        <div className="report-main-container">
+            
+            
+            <div id="print-vis" className="report-content-wrapper">
+                <div className="report-header-section">
+                    <img
+                        src="https://imgur.com/C86LPG8.png"
+                        alt="Logo MAVE"
+                        className="report-logo"
+                    />
                     <div>
-                        <h1 className="h11">Reporte de estadisticas del usuario {username}</h1>
-                        <img
-                            src="https://imgur.com/C86LPG8.png"
-                            alt="Logo"
-                            className="logo"
-                            id="print-logo"
-                        ></img>
-                        <h1 style={{marginLeft: 300}} id="print-h1">MAVE</h1>
+                        <h1 className="report-title">Reporte de estadísticas</h1>
+                        <span className="report-subtitle">Sistema MAVE</span>
                     </div>
-                    <div id="description">
-                        <h2>D: Dominante</h2>
-                        <h2>I: Influyente</h2>
-                        <h2>S: Estable</h2>
-                        <h2>C: Concienzudo</h2>
-                    </div>
+                </div>
+
+                <div id="description" className="report-legend">
+                    <span className="legend-item"><strong>D:</strong> Dominante</span>
+                    <span className="legend-item"><strong>I:</strong> Influyente</span>
+                    <span className="legend-item"><strong>S:</strong> Estable</span>
+                    <span className="legend-item"><strong>C:</strong> Concienzudo</span>
+                </div>
+
+                <div className="table-responsive-container">
                     <table id="table">
                         <thead>
                             <tr id="table-title">
-                                <th>Opcion N°</th>
+                                <th>Opción N°</th>
                                 <th>Respuesta</th>
                                 <th>Puntaje</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {isLoading ? <span><img className="Loading" src="https://mvalma.com/inicio/public/include/img/ImagenesTL/paginaTL/Cargando.gif" alt="Cargando" /></span> :
-                                respuestas.map((rta, index) => (
-                                    <tr key={index}>
-                                        <td>{rta.opcion}</td>
-                                        <td>{rta.respuesta}</td>
-                                        <td>{rta.puntaje}</td>
+                            {isLoading ? (
+                                <tr>
+                                    <td colSpan="3" style={{ textAlign: "center", padding: "30px" }}>
+                                        <img className="Loading" src="https://mvalma.com/inicio/public/include/img/ImagenesTL/paginaTL/Cargando.gif" alt="Cargando" />
+                                    </td>
+                                </tr>
+                            ) : (
+                                respuestas.length > 0 ? (
+                                    respuestas.map((rta, index) => (
+                                        <tr key={index}>
+                                            <td>{rta.opcion}</td>
+                                            <td>{rta.respuesta}</td>
+                                            <td>{rta.puntaje}</td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="3" style={{ textAlign: "center", padding: "20px" }}>No hay datos disponibles.</td>
                                     </tr>
-                                ))}
+                                )
+                            )}
                         </tbody>
                     </table>
                 </div>
+
+                <div className="report-activity">
+                    <h2 className="report-activity-title">Tiempo en actividades</h2>
+                    {actLoading ? (
+                        <p className="dim">Cargando…</p>
+                    ) : actData ? (
+                        <>
+                            <div className="activity-cards">
+                                <div className="activity-card"><span>Meditación total</span><b>{fmtHMS(actData.meditationSeconds)}</b><small>{actData.meditationSessions} sesiones</small></div>
+                                <div className="activity-card"><span>Ánimos registrados</span><b>{actData.moodsCount}</b><small>sesiones</small></div>
+                                <div className="activity-card"><span>Hábitos completados</span><b>{actData.habitsCount}</b><small>respuestas</small></div>
+                            </div>
+                            <div className="table-responsive-container">
+                                <table id="table">
+                                    <thead>
+                                        <tr id="table-title">
+                                            <th>Día</th>
+                                            <th>Meditación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {(actData.last7Days || []).map((d, i) => (
+                                            <tr key={i}>
+                                                <td>{d.date}</td>
+                                                <td>{fmtHMS(d.seconds)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </>
+                    ) : (
+                        <p className="dim">Sin datos de actividad todavía.</p>
+                    )}
+                </div>
+
+                {clinData && (
+                <div className="report-activity">
+                    <h2 className="report-activity-title">Reporte clínico{clinData.patientName ? ` · ${clinData.patientName}` : ""}</h2>
+                    {clinData.lastPhq4 ? (
+                    <>
+                        <div className="activity-cards">
+                            <div className="activity-card"><span>Último PHQ-4 ({clinData.lastPhq4.date})</span><b>{clinData.lastPhq4.total} · {clinData.lastPhq4.band}</b><small>D {clinData.lastPhq4.d} · A {clinData.lastPhq4.a}{clinData.lastPhq4.needsFollowUp ? " · seguimiento sugerido" : ""}</small></div>
+                            <div className="activity-card"><span>Días con ánimo (30d)</span><b>{clinData.daysMood30}</b><small>días con registro</small></div>
+                            <div className="activity-card"><span>Días con hábitos (30d)</span><b>{clinData.daysHabits30}</b><small>días con respuestas</small></div>
+                        </div>
+                        {(clinData.phq4History || []).length > 0 && (
+                        <div className="table-responsive-container">
+                            <table id="table">
+                                <thead><tr id="table-title"><th>Fecha</th><th>D</th><th>A</th><th>Total</th></tr></thead>
+                                <tbody>{clinData.phq4History.map((p, i) => (<tr key={i}><td>{p.date}</td><td>{p.d}</td><td>{p.a}</td><td>{p.total}</td></tr>))}</tbody>
+                            </table>
+                        </div>)}
+                        {(clinData.recentHabits || []).length > 0 && (
+                        <div className="table-responsive-container">
+                            <h3 className="report-activity-title" style={{ fontSize: 16 }}>Hábitos recientes</h3>
+                            <table id="table">
+                                <thead><tr id="table-title"><th>Fecha</th><th>Pregunta</th><th>Respuesta</th></tr></thead>
+                                <tbody>{clinData.recentHabits.map((h, i) => (<tr key={i}><td>{h.date}</td><td>{h.question}</td><td>{h.answer}</td></tr>))}</tbody>
+                            </table>
+                        </div>)}
+                    </>
+                    ) : (<p className="dim">Aún sin chequeos PHQ-4 registrados.</p>)}
+                    <p className="dim">Uso orientativo para acompañamiento profesional. No constituye un diagnóstico.</p>
+                </div>
+                )}
+
                 <button className="button" onClick={generatePDF}>Generar PDF</button>
             </div>
-        </>
-
+        </div>
+        </div>
     );
-};
-export default Report
+}
+
+export default Report;

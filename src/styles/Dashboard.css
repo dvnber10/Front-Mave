@@ -1,69 +1,123 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-#name{
-  margin-top: 1%;
-  margin-bottom: -3%;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+/* ============================================================
+   MAVE · Dashboard glass (mockup aprobado)
+   Fondo 100% plano, glassmorphism puro. Una sola capa.
+   Clases reales: .rp-cont > h1 + #space.scrollable-dashboard
+   > a(Link) > button.space-option > img.option-icon + label
+   ============================================================ */
+
+.dash-container {
+    padding: 15px;
+    text-align: center;
+    background: transparent;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
 }
-  #space {
-    position: relative;
+
+.dash-container h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #eef2ff;
+    margin: 6px 0 0;
+}
+
+#space {
+    position: static;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 18px;
+    margin-top: 22px;
 }
-   
-  .space-option {
-    background-color: transparent;
-    border: none;
+
+#space > a {
+    text-decoration: none;
+    color: #eef2ff;
+}
+
+.space-option {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centra tanto el texto como la imagen verticalmente */
-    text-align: center;
-    width: 190px; /* Ancho fijo para todos los botones */
-    height: 140px; /* Altura fija para todos los botones */
-    padding: 10px;
-    box-shadow: none;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .option-icon {
-    width: 50px;
-    height: 50%;
-  }
-  
-  .space-option:hover,
-  .space-option:focus{
-    box-shadow: 0 0 50px #CE3375;
-    background-color: #E881A6;
-  }
-  
-  .space-option label {
-    margin-top: 5px; /* Espacio entre la imagen y el texto */
-  }
-.rp-cont {
-  background: #60C8B3;
-  border-radius: 30px;
-  box-shadow: 0 5px 15px #c9d6ff;
-  position: relative;
-  overflow: hidden;
-  width: 900px;
-  max-width: 100%;
-  min-height: 520px;
-  font-family: "Lilita One", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  color: #1B5091;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14px;
+    text-align: left;
+    width: 100%;
+    min-height: 172px;
+    padding: 24px;
+    color: #eef2ff;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.22s ease, border-color 0.22s ease;
 }
-.scrollable-dashboard{
-  max-height: 400px;
-  overflow-y: auto;
-  margin-bottom: 7%;
+
+.space-option:hover,
+.space-option:focus {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    background: rgba(255, 255, 255, 0.065);
 }
-  
+
+.option-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    padding: 12px;
+    object-fit: contain;
+    background: rgba(52, 211, 176, 0.16);
+}
+
+/* Tintes por tarjeta (orden real: Hábitos, Ánimo, Gráficas, Mindfulness, Saber Más, Meditación, Usuarios) */
+#space > a:nth-child(1) .option-icon { background: rgba(52, 211, 176, 0.16); }
+#space > a:nth-child(2) .option-icon { background: rgba(255, 126, 182, 0.16); }
+#space > a:nth-child(3) .option-icon { background: rgba(139, 155, 255, 0.16); }
+#space > a:nth-child(4) .option-icon { background: rgba(52, 211, 176, 0.16); }
+#space > a:nth-child(5) .option-icon { background: rgba(45, 212, 191, 0.16); }
+#space > a:nth-child(6) .option-icon { background: rgba(139, 155, 255, 0.16); }
+#space > a:nth-child(7) .option-icon { background: rgba(255, 126, 182, 0.16); }
+#space > a:nth-child(8) .option-icon { background: rgba(255, 206, 122, 0.16); }
+#space > a:nth-child(9) .option-icon { background: rgba(127, 240, 207, 0.16); }
+#space > a:nth-child(10) .option-icon { background: rgba(255, 126, 182, 0.16); }
+#space > a:nth-child(11) .option-icon { background: rgba(255, 206, 122, 0.16); }
+#space > a:nth-child(12) .option-icon { background: rgba(139, 155, 255, 0.16); }
+#space > a:nth-child(13) .option-icon { background: rgba(255, 126, 182, 0.16); }
+
+.space-option label {
+    margin: 0;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: #eef2ff;
+    cursor: pointer;
+}
+
+.scrollable-dashboard {
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+    #space {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #space {
+        grid-template-columns: 1fr;
+    }
+}

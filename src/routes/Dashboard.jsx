@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import { GetUser } from "../hooks/UserHook";
 import { role } from "../querys/User.query";
 import { setMenssage } from "../hooks/Notify";
+import BackButton from "../components/BackButton";
 
 function Dashboard() {
   //const [userName, setUserName] = useState("");
@@ -28,9 +29,32 @@ function Dashboard() {
   }
 
   return (
-    <div className="rp-cont">
+    <div >
       <Navbar />
+      <div className="dash-container">
       <h1>Bienvenido {isSuccess && result.data.UserName}</h1>
+      {role === 3 ? (
+      <div id="space" className="scrollable-dashboard">
+        <Link to="/MisPacientes">
+          <button className="space-option">
+            <img src="https://cdn-icons-png.flaticon.com/512/2694/2694971.png" className="option-icon" />
+            <label> Mis pacientes </label>
+          </button>
+        </Link>
+        <Link to="/Chat">
+          <button className="space-option">
+            <img src="./src/image/icon/bell.svg" className="option-icon" />
+            <label> Chat </label>
+          </button>
+        </Link>
+        <Link to="/Texts">
+          <button className="space-option">
+            <img src="https://imgur.com/JkSEd9K.png" className="option-icon" />
+            <label> Saber Más </label>
+          </button>
+        </Link>
+      </div>
+      ) : (
       <div id="space" className="scrollable-dashboard">
 
         <Link to="/Habitos">
@@ -71,10 +95,13 @@ function Dashboard() {
             <label> Mindfulness </label>
           </button>
         </Link>
-        <Link to="/Texts">
+        <Link to="/Caminata">
           <button className="space-option">
-            <img src="https://imgur.com/JkSEd9K.png" className="option-icon" />
-            <label> Saber Más </label>
+            <img
+              src="https://imgur.com/wnFsSsp.png"
+              className="option-icon"
+            />
+            <label> Caminata </label>
           </button>
         </Link>
 
@@ -88,6 +115,71 @@ function Dashboard() {
           </button>
         </Link>
 
+        <Link to="/Bienestar">
+          <button className="space-option">
+            <img
+              src="./src/image/Dashboard/Mood.svg"
+              className="option-icon"
+            />
+            <label> Chequeo PHQ-4 </label>
+          </button>
+        </Link>
+
+        <Link to="/Yoga">
+          <button className="space-option">
+            <img
+              src="./src/image/test.svg"
+              className="option-icon"
+            />
+            <label> Yoga </label>
+          </button>
+        </Link>
+
+        <Link to="/Respiracion">
+          <button className="space-option">
+            <img
+              src="https://imgur.com/4GqlAew.png"
+              className="option-icon"
+            />
+            <label> Respiración </label>
+          </button>
+        </Link>
+
+        <Link to="/Escaneo">
+          <button className="space-option">
+            <img
+              src="https://imgur.com/vL07so6.png"
+              className="option-icon"
+            />
+            <label> Escaneo corporal </label>
+          </button>
+        </Link>
+
+        <Link to="/Texts">
+          <button className="space-option">
+            <img src="https://imgur.com/JkSEd9K.png" className="option-icon" />
+            <label> Saber Más </label>
+          </button>
+        </Link>
+
+        <Link to="/Profesionales">
+          <button className="space-option">
+            <img
+              src="./src/image/Dashboard/know.svg"
+              className="option-icon"
+            />
+            <label> Contactar profesional </label>
+          </button>
+        </Link>
+
+        {(role === 1 || role === 2) && (
+          <Link to="/Admin">
+            <button className="space-option">
+              <img src="./src/image/test.svg" className="option-icon" />
+              <label> Administración </label>
+            </button>
+          </Link>)
+        }
         {role === 2 && (
           <Link to="/AllUsers">
             <button className="space-option">
@@ -97,6 +189,8 @@ function Dashboard() {
           </Link>)
         }
 
+      </div>
+      )}
       </div>
     </div>
   );

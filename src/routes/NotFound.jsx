@@ -1,7 +1,9 @@
 import "../styles/NotFound.css";
+import BackButton from "../components/BackButton";
 function NotFound() {
   return (
     <body className="four_zero_four_bg">
+    <BackButton />
       <div id="arriba-404">
       <img src="https://imgur.com/C86LPG8.png" alt="" id="logo-404"/>
       <h1 id="h1-404">MAVE</h1>

@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+/* ============================================================
+   MAVE · Mis pacientes del psicólogo (mockup glass, una sola capa)
+   Clases únicas .mpat-* (sin colisiones globales).
+   ============================================================ */
+
+.mpat-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 26px 26px 60px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #eef2ff;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+
+.mpat-page h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 6px 0 0;
+}
+
+.mpat-intro {
+    color: #a6b1d6;
+    font-size: 14.5px;
+    margin: 8px 0 0;
+    line-height: 1.6;
+}
+
+.mpat-dim {
+    color: #a6b1d6;
+    font-size: 14px;
+}
+
+.mpat-empty {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    padding: 30px;
+    margin-top: 22px;
+    text-align: center;
+}
+
+.mpat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.mpat-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    padding: 16px 18px;
+}
+
+.mpat-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 17px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: linear-gradient(135deg, #34d3b0, #8b9bff);
+    color: #081022;
+    flex-shrink: 0;
+}
+
+.mpat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.mpat-info b {
+    font-size: 15.5px;
+}
+
+.mpat-info span {
+    font-size: 12.5px;
+    color: #a6b1d6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mpat-btns {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.mpat-btn {
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 9px 18px;
+}
+
+.mpat-btn.rep {
+    background: rgba(139, 155, 255, 0.15);
+    color: #8b9bff;
+    border: 1px solid rgba(139, 155, 255, 0.45);
+}
+
+.mpat-btn.chat {
+    background: rgba(52, 211, 176, 0.15);
+    color: #7ff0cf;
+    border: 1px solid rgba(52, 211, 176, 0.45);
+}
+
+@media (max-width: 600px) {
+    .mpat-row {
+        flex-wrap: wrap;
+    }
+    .mpat-btns {
+        width: 100%;
+    }
+    .mpat-btn {
+        flex: 1;
+        text-align: center;
+    }
+}

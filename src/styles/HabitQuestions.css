@@ -1,126 +1,169 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
-.lilita-one-regular {
-  font-family: "Lilita One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
+/* --- Contenedor Principal --- */
 .habit-questions-container {
-  background: #60C8B3;
-  border-radius: 30px;
-  box-shadow: 0 5px 15px #c9d6ff;
-  position: relative;
-  overflow: hidden;
-  width: 950px;
-  max-width: 100%;
-  min-height: 550px;
+  max-height: 90vh;
+  max-height: calc(100dvh - 150px);
+  min-height: 320px;
+  width: 100%;
+  box-sizing: border-box;
   font-family: "Lilita One", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  color: #1B5091;
+  justify-content: space-between;
+  color: #e8ecf1;
+  padding: 24px 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .habit-questions-container h1 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 10px 0;
+  color: #f8fafc;
+}
+
+.habit-questions-container p {
+  font-size: 0.95rem;
+  text-align: center;
+  color: #94a3b8;
+  max-width: 600px;
+  line-height: 1.4;
+  margin: 0 0 15px 0;
+  font-family: sans-serif;
 }
 
 .habit-questions-container .question {
-  font-size: 1.2rem;
-  font-weight: 800;
-  margin: 0;
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin: 15px 0;
+  text-align: center;
+  color: #cbd5e1;
+  line-height: 1.4;
+  max-width: 90%;
 }
 
+/* --- Contenedor de Opciones --- */
 .habit-questions-container .radio-input {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
   flex-direction: row;
-  background: #60C8B3;
-  color: #1B5091;
-  border-radius: 10px;
-  width: auto;
-}
-
-.habit-questions-container .radio-input label {
-  width: 60px;
-  margin-left: 8px;
-  font-size: 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 1px solid rgba(187, 187, 187, 0.164);
-  color: #1B5091;
-  transition: 0.3s ease;
   justify-content: center;
 }
 
-.habit-questions-container .radio-input label input[type="radio"]:checked + label {
-  background-color: #E881A6;
-  color: #f7f7f7;
-}
-
-.habit-questions-container .radio-input label:hover {
-  background-color: #E881A6;
-  color: #f7f7f7;
-}
-
-
-.habit-questions-container button {
-  background-color: rgb(30, 105, 196);
-  color: #fff;
-  font-size: 20px;
-  padding: 10px 45px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 0px;
-  cursor: pointer;
-  font-family: 'Lilita One', Times, serif;
-}
-
-.habit-questions-container .radio-input .radio-option {
+/* --- ESTILOS PARA MÓVIL (Por defecto) --- */
+.habit-questions-container .radio-option {
+  display: flex;
   align-items: center;
+  flex: 0 0 calc(33.333% - 8px); /* 3 arriba en móvil */
+  box-sizing: border-box;
 }
 
-.habit-questions-container .radio-input .radio-option input[type="radio"] {
-  margin-right: 8px;
+/* Los últimos 2 elementos ocupan el 50% para la segunda fila en móvil */
+.habit-questions-container .radio-option:nth-last-child(-n+2) {
+  flex: 0 0 calc(50% - 6px);
 }
 
+/* Ocultar input nativo */
+.habit-questions-container .radio-input input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Estilo visual de la opción (Texto) */
 .habit-questions-container .radio-input .option-text {
-  font-size: 20px;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border-radius: 12px;
   cursor: pointer;
-  color: #1B5091;
-  transition: 0.3s ease;
-  padding: 4px 8px;
+  color: #040404;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.25s ease;
+  padding: 14px 8px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .habit-questions-container .radio-input .option-text:hover {
-  background-color: #E881A6;
-  color: #f7f7f7;
+  background-color: rgba(232, 129, 166, 0.15);
+  border-color: rgba(232, 129, 166, 0.4);
 }
 
+/* Estado Seleccionado */
 .habit-questions-container .radio-input input[type="radio"]:checked + .option-text {
-  background-color: #E881A6;
-  color: #f7f7f7;
-  padding-left:50% ;
-  padding-right: 50%;
+  background: linear-gradient(135deg, #E881A6 0%, #d4638a 100%);
+  color: #ffffff;
+  border-color: #E881A6;
+  box-shadow: 0 4px 14px rgba(232, 129, 166, 0.4);
+  transform: scale(1.02);
+}
+
+/* --- Botones --- */
+.habit-questions-container button,
+.boton-finalizar {
+  background: linear-gradient(135deg, #1e69c4 0%, #154c8f 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 14px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  text-transform: uppercase;
+  margin: 20px 0 10px 0;
+  cursor: pointer;
+  font-family: 'Lilita One', Times, serif;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 12px rgba(30, 105, 196, 0.3);
+  transition: all 0.25s ease;
   
 }
 
-.boton-finalizar {
-  background-color: rgb(30, 105, 196);
-  color: #fff;
-  font-size: 20px;
-  padding: 10px 45px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 0px;
-  cursor: pointer;
-  font-family: 'Lilita One', Times, serif;
+.habit-questions-container button:hover,
+.boton-finalizar:hover {
+  
+  background: linear-gradient(135deg, #2578dc 0%, #1a59a7 100%);
+  transform: translateY(-4px);
+}
+
+.Loading {
+  display: block;
+  margin: 100px auto;
+  width: 60px;
+}
+
+/* --- MEDIA QUERY: Pantallas Grandes (PC / Tablets a partir de 768px) --- */
+@media (min-width: 768px) {
+  .habit-questions-container .radio-input {
+    max-width: 750px; /* Ampliamos el contenedor horizontalmente para que quepan todos lado a lado */
+    flex-wrap: nowrap; /* ¡PROHIBIMOS QUE BAJEN DE LÍNEA! Se quedan en una sola fila */
+  }
+
+  /* Forzamos que cada opción tome el mismo espacio en fila horizontal */
+  .habit-questions-container .radio-option,
+  .habit-questions-container .radio-option:nth-last-child(-n+2) {
+    flex: 1 1 0 !important; 
+    width: auto;
+  }
+
+  .habit-questions-container .radio-input .option-text {
+    padding: 16px 12px;
+    font-size: 1.2rem;
+  }
 }

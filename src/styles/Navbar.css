@@ -1,75 +1,304 @@
-#mave {
-    margin-top: 2%;
-    color: white;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
 
-.navbar{
-    background-color: #3991e9;
-    width: 98%;
-    min-width: 550px;
-    height: 60px;
+/* ============================================================
+   MAVE · Navbar glass (mockup aprobado)
+   Fondo 100% plano, glassmorphism puro. Una sola capa.
+   Clases reales: .navbar > .nav_logo(img.Logo) + h1#mave
+   + .nav_items(a.items > img.Logo) + .nav_toggle
+   ============================================================ */
+
+.navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-radius: 15px;
-    box-shadow: 3px 3px 15px;
-    margin-top: 10px;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 20px;
+    margin: 16px auto 28px;
+    max-width: 1100px;
+    position: sticky;
+    top: 16px;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-width: 0;
+    width: auto;
+    height: auto;
 }
-.Logo{
-    box-shadow: 3px 3px 15px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
-.nav_logo{
-    font-weight: bold;
+
+.nav_logo {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-weight: 800;
     font-size: 20px;
-    margin: 15px;
-    color: white;
 }
-.nav_items a{
-    margin: 15px;
-    color: white;
+
+.nav_logo .Logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+#mave {
+    margin: 0 0 0 12px;
+    color: #eef2ff;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: 0.5px;
+}
+
+.nav_items {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav_items a {
+    margin: 0;
+    padding: 0;
+    color: #a6b1d6;
     position: relative;
     text-decoration: none;
-    
-    
-}
-.items{
-    width: 50px;
-    height: 50px;
-    padding: 6px;
-    border: 5px;
-    border-radius: 15px;
+    display: flex;
 }
 
-.nav_toggle{
+.items {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.065);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.items:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.nav_items .Logo,
+.items .Logo {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+/* --- Links de navegación global (mockup) --- */
+.nav_links {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-link {
+    color: #a6b1d6;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 15px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.on {
+    color: #eef2ff;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.nav_toggle {
     display: none;
 }
 
-@media (max-width:768px) {
-    .navbar{
-        position: absolute;
-        width: 90%;
-        top: 60px;
-        margin: 30px;
-        height: -webkid-fill-available;
+/* --- Menú desplegable móvil --- */
+.nav_menu {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .nav_links {
+        display: none;
     }
-    .nav_items{
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: #3991e9;
+    .nav_toggle {
         display: flex;
-        flex-direction: file;
-        width: 90%;
-        height: -webkid-fill-available;
-        transition: 0.3s ease all;
-        margin: 20px;
-        border-radius: 15px;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.065);
+        color: #eef2ff;
+        font-size: 19px;
+        cursor: pointer;
+        transition: all 0.2s ease;
     }
-    .Logo{
-        width: 35px;
-        height: 35px;
+    .nav_toggle:hover {
+        background: rgba(255, 255, 255, 0.10);
     }
+    .nav_menu {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        padding: 10px;
+        border-radius: 20px;
+        background: rgba(10, 15, 36, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        -webkit-backdrop-filter: blur(22px) saturate(150%);
+        backdrop-filter: blur(22px) saturate(150%);
+        box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+        z-index: 50;
+    }
+    .nav_menu .nav-link {
+        padding: 12px 16px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        top: 8px;
+    }
+    #mave {
+        font-size: 16px;
+    }
+    .nav_logo .Logo {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    #mave {
+        display: none;
+    }
+}
+
+/* --- Campana web: panel de notificaciones glass --- */
+.notif-wrap {
+    position: relative;
+    display: flex;
+}
+
+.notif-panel {
+    position: absolute;
+    right: 0;
+    top: 48px;
+    width: 320px;
+    max-width: 86vw;
+    background: rgba(10, 15, 36, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 18px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.notif-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notif-head b {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 15px;
+    color: #eef2ff;
+}
+
+.notif-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.notif-tip {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #eef2ff;
+    margin: 0;
+}
+
+.notif-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.notif-panel .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.notif-panel .pill.teal {
+    background: rgba(52, 211, 176, 0.15);
+    color: #7ff0cf;
+}
+
+.notif-panel .pill.pink {
+    background: rgba(255, 126, 182, 0.15);
+    color: #ff7eb6;
+}
+
+.notif-panel .pill.amber {
+    background: rgba(255, 206, 122, 0.15);
+    color: #ffce7a;
+}
+
+.notif-msg {
+    font-size: 13px;
+    color: #a6b1d6;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notif-panel .dim {
+    color: #a6b1d6;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* --- Botón de perfil (avatar con inicial, siempre visible en navbar) --- */
+.items.prof-avatar-nav {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    color: #081022;
+    text-decoration: none;
+    background: linear-gradient(135deg, #34d3b0, #8b9bff);
+    border: none;
 }

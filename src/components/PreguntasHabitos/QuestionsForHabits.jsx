@@ -1,23 +1,21 @@
 import Navbar from "../Navbar";
 import Swal from "sweetalert2";
-import { Link, NavLink, useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 import Cookies from "universal-cookie";
 import React, { useState, useEffect } from "react";
 import { GetQuestionHabbitts } from "../../hooks/Question";
+import BackButton from "../BackButton";
 
 const QuestionsForHabits = ({ pregunta, onRespuesta, onConfirmar, esUltimaPregunta }) => {
+  const cookie = new Cookies();
+  const navigate = useNavigate();
+  const cook = cookie.get('id');
 
-/* Cookie */
-/* import Cookies from "universal-cookie"; */
-const cookie = new Cookies();
-const navigate = useNavigate();
-const cook = cookie.get('id')
-useEffect(() => {
-  if (!cook) {
-    navigate('/time-out')
-  }
-}, [])
-/* Cookie */
+  useEffect(() => {
+    if (!cook) {
+      navigate('/time-out');
+    }
+  }, [cook, navigate]);
 
   const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
 
@@ -25,12 +23,12 @@ useEffect(() => {
     setRespuestaSeleccionada(respuesta);
   };
 
-  const handleConfirmar = () => {
+  const handleConfirmarRespuesta = () => {
     if (respuestaSeleccionada !== null) {
       onRespuesta(respuestaSeleccionada);
       onConfirmar();
-      setRespuestaSeleccionada(null); // Reinicia la respuesta seleccionada
-    }else{
+      setRespuestaSeleccionada(null); 
+    } else {
       Swal.fire({
         title: 'Por favor selecciona una respuesta antes de continuar',
         icon: 'info',
@@ -39,59 +37,74 @@ useEffect(() => {
       });
     }
   };
-  const {data:result, isSuccess, isLoading}= GetQuestionHabbitts(cook)
+
+  const { data: result, isLoading } = GetQuestionHabbitts(cook);
+
   return (
-    <>{isLoading ? <span><img className="Loading" src="https://mvalma.com/inicio/public/include/img/ImagenesTL/paginaTL/Cargando.gif" alt="Cargando" /></span>:<div className="habit-questions-container"> 
-    <Navbar/>
-    <h1>Test de Hábitos</h1>
-    <p>Una serie de preguntas sobre hábitos es una consulta breve que te ayuda a reflexionar sobre tus acciones diarias <br></br>relacionadas a aspectos de tu vida. Para responderla, simplemente elige una opción que mejor describa <br></br> tu comportamiento o hábito del día, puede ser una calificación del 1 al 5 o una respuesta de Si o No.</p>
-    <h2 className="question">{pregunta.pregunta}</h2>
-    <div className="radio-input">
-      {pregunta.tipo === "puntuacion" ? (
-        [1, 2, 3, 4, 5].map((opcion) => (
-          <label key={opcion} className="radio-option">
-            <input
-              type="radio"
-              id={`opcion-${opcion}`}
-              name="respuesta"
-              value={opcion}
-              checked={respuestaSeleccionada === opcion}
-              onChange={() => handleSeleccionRespuesta(opcion)}
-            />
-            <span className="option-text">{opcion}</span>
-          </label>
-        ))
+    <>
+      <Navbar />
+      <BackButton />
+      {isLoading ? (
+        <div style={{ textAlign: "center" }}>
+          <img className="Loading" src="https://mvalma.com/inicio/public/include/img/ImagenesTL/paginaTL/Cargando.gif" alt="Cargando" />
+        </div>
       ) : (
-        <>
-          <label className="radio-option">
-            <input
-              type="radio"
-              id="respuesta-si"
-              name="respuesta"
-              value={6}
-              checked={respuestaSeleccionada === "si"}
-              onChange={() => handleSeleccionRespuesta(7)}
-            />
-            <span className="option-text">Sí</span>
-          </label>
-          <label className="radio-option">
-            <input
-              type="radio"
-              id="respuesta-no"
-              name="respuesta"
-              value={7}
-              checked={respuestaSeleccionada === "no"}
-              onChange={() => handleSeleccionRespuesta(7)}
-            />
-            <span className="option-text">No</span>
-          </label>
-        </>
+        <div className="habit-questions-container"> 
+          <div>
+            <h1>Test de Hábitos</h1>
+            <p>
+              Una serie de preguntas sobre hábitos es una consulta breve que te ayuda a reflexionar sobre tus acciones diarias relacionadas a aspectos de tu vida. Simplemente elige una opción que mejor describa tu comportamiento del día.
+            </p>
+          </div>
+
+          <h2 className="question">{pregunta.pregunta}</h2>
+
+          <div className="radio-input">
+            {pregunta.tipo === "puntuacion" ? (
+              [1, 2, 3, 4, 5].map((opcion) => (
+                <label key={opcion} className="radio-option">
+                  <input
+                    type="radio"
+                    name="respuesta"
+                    value={opcion}
+                    checked={respuestaSeleccionada === opcion}
+                    onChange={() => handleSeleccionRespuesta(opcion)}
+                  />
+                  <span className="option-text">{opcion}</span>
+                </label>
+              ))
+            ) : (
+              <>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="respuesta"
+                    value="Sí"
+                    checked={respuestaSeleccionada === "Sí"}
+                    onChange={() => handleSeleccionRespuesta("Sí")}
+                  />
+                  <span className="option-text">Sí</span>
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="respuesta"
+                    value="No"
+                    checked={respuestaSeleccionada === "No"}
+                    onChange={() => handleSeleccionRespuesta("No")}
+                  />
+                  <span className="option-text">No</span>
+                </label>
+              </>
+            )}
+          </div>
+
+          <button onClick={handleConfirmarRespuesta}>
+            {esUltimaPregunta ? "Finalizar" : "Confirmar Respuesta"}
+          </button>
+        </div>
       )}
-    </div>
-    <button onClick={handleConfirmar}>
-      {esUltimaPregunta ? "Finalizar" : "Confirmar Respuesta"}
-    </button>
-  </div>}</>
+    </>
   );
 };
 

@@ -1,278 +1,321 @@
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
 
+/* ============================================================
+   MAVE · Login Glass + Gota (aprobado)
+   Fondo: 100% plano (sin degradados). Glassmorphism puro.
+   Efecto GOTA (pulso): al pulsar la gota un círculo glass teal
+   nace abajo-derecha con clip-path:circle(), se expande 0.6s
+   mostrando el cambio y se contrae solo; el registro queda a la
+   IZQUIERDA y la gota vuelve a su esquina como interruptor.
+   ============================================================ */
 
-.lilita-one-regular {
-    font-family: "Lilita One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-:root {
-    background-color: #272020;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    height: auto;
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 7%;
-}
-
-body {
-    /*Degradado de fondo*/
-    font-family: "Lilita One", sans-serif;
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #60C8B3, #1B5091);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-}
-
-/*linea de la mitad*/
 .container {
-    /*Luz de fondo*/
-    background: #60C8B3;
-    margin-top: 5%;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px #c9d6ff;
+    background: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    backdrop-filter: blur(24px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 32px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
     position: relative;
     overflow: hidden;
-    width: 900px;
+    width: min(920px, 92vw);
+    min-height: 560px;
     max-width: 100%;
-    min-height: 520px;
-    font-family: "Lilita One", sans-serif;
+    margin: 48px auto;
 }
 
-.container p {
-    /*Texto abajo del logo registrarse*/
-    color: #FFFF;
-    font-size: 25px;
-    margin: 10px 0;
-    font-family: "Lilita One", sans-serif;
-    font-weight: bold;
-    letter-spacing: 1px;
-    line-height: 30px;
-    text-shadow: 0 0 5px black;
-}
-
-.acronym {
-    /*Texto abajo del logo ingresar*/
-    font-size: 20px;
-    line-height: 20px;
-    font-family: "Lilita One", sans-serif;
-    color: #CE3375;
-
-    &:not(br) {
-        font-size: 25px;
-        /* Tamaño de fuente para letras en mayúscula */
-        color: #FFFF;
-        /* Color de texto para letras en mayúscula */
-        letter-spacing: 1px;
-        line-height: 30px;
-        margin: 10px 0;
-        text-shadow: 0 0 3px black;
-    }
-}
-
-.container span {
-    font-size: 20px;
-    font-family: 'Lilita One', Times, serif;
-}
-
-.container a {
-    color: #FFFF;
-    font-size: 17px;
-    text-decoration: none;
-    margin: 15px 0 10px;
-    font-family: 'Lilita One', Times, serif;
-    text-shadow: 0 0 5px black;
-}
-
-.container button {
-    /*Boton de ingresar*/
-    background-color: rgb(30, 105, 196);
-    color: #fff;
-    font-size: 20px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-    font-family: 'Lilita One', Times, serif;
-}
-
-.container button.hidden {
-    background-color: transparent;
-    border-color: #ffffff;
-
-}
-
-/*Fondo*/
-.container form {
-    background-color: #60C8B3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
-    width: auto;
-    color: #1B5091;
-}
-
-.resetPass:hover {
-    color: #1B5091;
-    text-shadow: none;
-}
-
-.container input {
-    /*Cajas de texto*/
-    background-color: #FFFF;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    width: 100%;
-    outline: none;
-    font-family: 'Lilita One', Times, serif;
-}
-
+/* ---------- Columnas 50/50 ---------- */
 .form-container {
     position: absolute;
     top: 0;
-    background: red;
     height: 100%;
     width: 50%;
-    transition: all 0.6s ease-in-out;
-}
-
-.sign-in {
-    left: 50%;
-    width: 50%;
-    z-index: 2;
-}
-
-
-.sign-up {
-    left: 50%;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
-
-
-
-@keyframes move {
-
-    0%,
-    49.99% {
-        opacity: 0;
-        z-index: 1;
-    }
-
-    50%,
-    100% {
-        opacity: 1;
-        z-index: 5;
-    }
-}
-
-.social-icons {
-    margin: 20px 0;
-}
-
-.social-icons a {
-    border: 1px solid #050c9f;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
-
-.toggle-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 1000;
-}
-
-.container.active .toggle-container {
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
-
-.toggle {
-    /* Título de bienvenida */
-    background-color: rgb(30, 105, 196);
-    height: 100%;
-    background: linear-gradient(to right, #6EA1D4, #60C8B3);
-    /* Color de texto de bienvenida */
-    color: #ffffff;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 3px 0 #000;
-    /* Contorno del texto */
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Agrega una sombra suave al elemento */
-}
-
-
-.container.active .toggle {
-    transform: translateX(50%);
-}
-
-.toggle-panel {
-    position: absolute;
-    width: 50%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.4s ease;
+    z-index: 2;
+}
+.form-container.sing-up { left: 0; }
+.form-container.sign-in { left: 0; }
+
+/* Registro a la izquierda; login a la derecha (default) */
+.container:not(.active) .form-container.sing-up {
+    transform: translateX(120%);
+    opacity: 0;
+    pointer-events: none;
+}
+/* Al activar (gota expandida) → registro visible IZQUIERDA */
+.container.active .form-container.sing-up {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.container.active .form-container.sign-in {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-login {
+    display: flex;
     flex-direction: column;
-    padding: 0 30px;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 0 44px;
     text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+}
+.form-login h1 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
+    color: #eef1ff;
+}
+.form-login span { color: #a9b3d4; font-size: 14px; }
+.form-login .letter-acronym { font-family: var(--font-mono); color: #34d3b0; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; }
+
+/* ---------- Campos ---------- */
+.caja {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transition: all 0.25s ease;
+}
+.caja input {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 34px 14px 16px;
+    color: #eef1ff;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    width: 100%;
+}
+.caja input::placeholder { color: #7b87ad; }
+.caja:focus-within {
+    border-color: #34d3b0;
+    box-shadow: 0 0 0 4px rgba(52, 211, 176, 0.16);
+}
+.eye { width: 20px; height: 20px; opacity: 0.75; }
+.verPass, .password-toggle { margin-right: 14px; cursor: pointer; display: flex; }
+.alert { color: #ff7eb6; font-size: 12px; width: 100%; text-align: left; }
+
+/* ---------- Botón ---------- */
+.button, .container button, form button {
+    background: #34d3b0;
+    color: #081022;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 36px;
+    font-weight: 800;
+    font-size: 15px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
+    box-shadow: 0 16px 40px rgba(52, 211, 176, 0.28);
+}
+.button:hover, form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 52px rgba(52, 211, 176, 0.45);
+}
+.link-route { color: #8b9bff; text-decoration: none; font-size: 13px; font-weight: 600; }
+.link-route:hover { color: #34d3b0; }
+.login-pro { text-align: center; color: #a6b1d6; font-size: 13.5px; margin: 14px 0 0; font-family: 'Manrope', system-ui, sans-serif; }
+.login-pro a { color: #7ff0cf; font-weight: 700; text-decoration: none; }
+.login-pro a:hover { text-decoration: underline; }
+.resetPass { color: #8b9bff; text-decoration: none; font-size: 13px; font-weight: 600; }
+.resetPass:hover { color: #34d3b0; }
+
+/* ---------- GOTA (efecto clave) ---------- */
+/* Contenedor que se expande sobre todo el panel */
+.toggle-container {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
 }
 
-.toggle-left {
-    transform: translateX(-200%);
+/* La gota en sí: círculo glass que nace desde abajo-derecha */
+.gota {
+    position: absolute;
+    right: -60px;
+    bottom: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: linear-gradient(140deg, rgba(52, 211, 176, 0.92), rgba(139, 155, 255, 0.85));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 40px 90px rgba(52, 211, 176, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 4px;
+    transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    pointer-events: auto;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
 }
 
-.container.active .toggle-left {
-    transform: translateX(0);
+/* Gota en pulso: se expande 0.6s por encima de todo (z-index 3)
+   mostrando el cambio y se contrae sola al quitarse .pulse */
+.container.pulse .gota {
+    right: 50%;
+    bottom: 50%;
+    width: 340%;
+    height: 340%;
+    transform: translate(50%, 50%);
+    -webkit-clip-path: circle(74% at 70% 70%);
+    clip-path: circle(74% at 70% 70%);
+    border-radius: 50%;
+    z-index: 3;
 }
 
-.toggle-right {
-    right: 0;
-    transform: translateX(0);
+/* Se mostrará el boton para ir al registro dentro de la gota */
+.label,
+.p-pos { color: #eef1ff; }
+.gota h2 {
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    margin: 0;
+    padding: 0 30px;
+}
+.gota p { max-width: 160px; font-size: 11px; line-height: 1.4; color: rgba(238, 241, 255, 0.85); }
+.gota-small-text { font-family: var(--font-mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(8, 16, 34, 0.9); }
+
+#login, #register {
+    background: rgba(8, 16, 34, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #eef1ff;
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    pointer-events: auto;
+}
+#login:hover, #register:hover {
+    background: #eef1ff;
+    color: #0a0f24;
 }
 
-.container.active .toggle-right {
-    transform: translateX(200%);
-}
+/* ---------- Psuedo panel de bienvenida (izq cuando logueado) ---------- */
+/* ============================================================
+   RESPONSIVE DESIGN CORREGIDO PARA MÓVILES (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+    .container {
+        width: 92vw;
+        min-height: 540px;
+        margin: 20px auto;
+        border-radius: 24px;
+        overflow: hidden;
+    }
 
-.logo {
-    width: 120px;
-    height: 120px;
+    /* Columnas a pantalla completa vertical */
+    .form-container {
+        width: 100%;
+        height: calc(100% - 80px); /* Deja espacio para la barra inferior */
+        top: 0;
+        left: 0 !important;
+        transform: none !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* Mostrar Login por defecto cuando NO está activo */
+    .container:not(.active) .form-container.sign-in {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Mostrar Registro cuando SÍ está activo */
+    .container.active .form-container.sing-up {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Asegurar que el otro formulario se oculte por completo */
+    .container:not(.active) .form-container.sing-up,
+    .container.active .form-container.sign-in {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .form-login {
+        padding: 0 20px;
+        gap: 12px;
+    }
+
+    .form-login h1 {
+        font-size: 22px;
+    }
+
+    /* --- Barra inferior fija para la Gota en Móvil (Evita bloqueos) --- */
+    .toggle-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        pointer-events: auto;
+        z-index: 10;
+    }
+
+    .gota {
+        right: -15px;
+        bottom: -15px;
+        width: 30%;
+        height: 18%;
+        text-align: center;
+        align-items: center;
+    }
+
+    /* Anular efecto de pulso gigante en móvil para garantizar estabilidad de clics */
+    .container.pulse .gota {
+        width: 200%;
+        height: 150%;
+        right: -100px;
+        bottom: -100px;
+        transform: none;
+        clip-path: none;
+    }
+
+    .gota h2 {
+        font-size: 14px;
+        padding: 0;
+        text-align: left;
+        margin: 0;
+    }
+
+    .gota p {
+        display: none; /* Oculta descripciones largas en pantallas pequeñas */
+    }
+
+    #login, #register {
+        padding: 10px 20px;
+        font-size: 13px;
+        background: rgba(8, 16, 34, 0.85);
+        color: #eef1ff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
 }

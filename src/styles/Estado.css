@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+/* ============================================================
+   MAVE · Estado del sistema / diagnóstico (una sola capa)
+   Clases únicas .est-* (sin colisiones globales).
+   ============================================================ */
+
+.est-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 18px 60px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #eef2ff;
+    overflow-y: auto;
+}
+
+.est-card {
+    width: 100%;
+    max-width: 560px;
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-sizing: border-box;
+}
+
+.est-kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8b9bff;
+    font-weight: 700;
+}
+
+.est-card h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    margin: 0;
+}
+
+.est-banner {
+    border-radius: 16px;
+    padding: 13px 18px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+}
+
+.est-banner.ok {
+    background: rgba(52, 211, 176, 0.15);
+    color: #7ff0cf;
+    border: 1px solid rgba(52, 211, 176, 0.45);
+}
+
+.est-banner.bad {
+    background: rgba(255, 126, 182, 0.15);
+    color: #ff7eb6;
+    border: 1px solid rgba(255, 126, 182, 0.45);
+}
+
+.est-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.est-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.est-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.est-dot.ok {
+    background: #34d3b0;
+    box-shadow: 0 0 12px 2px rgba(52, 211, 176, 0.6);
+}
+
+.est-dot.bad {
+    background: #ff7eb6;
+    box-shadow: 0 0 12px 2px rgba(255, 126, 182, 0.6);
+}
+
+.est-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.est-info b {
+    font-size: 14.5px;
+}
+
+.est-info span {
+    font-size: 12.5px;
+    color: #a6b1d6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.est-btns {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.est-btn {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 12px 26px;
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    color: #081022;
+    box-shadow: 0 10px 30px rgba(52, 211, 176, 0.35);
+}
+
+.est-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.est-link {
+    color: #8b9bff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.est-dim {
+    color: #a6b1d6;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin: 0;
+}

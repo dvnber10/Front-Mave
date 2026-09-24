@@ -24,12 +24,9 @@ const InicioSession = () => {
     if (mutacion.isSuccess) {
         // 
         let usuario = mutacion.data.data.Id
-        let token = mutacion.data.data.Token
 
         // se crea una cookie con el id de usuario 
         cookie.set('id', usuario, { path: '/' })
-
-        cookie.set('token', token,{path: '/' });
         // Se envia a la ruta del dashboard con inicio de session
         
         window.location = `/dashboard`
@@ -43,8 +40,11 @@ const InicioSession = () => {
         mutacion.mutate(data)
     })
 
+    const errData = mutacion.error?.response?.data;
+    const errMsg = typeof errData === "string" ? errData : (errData?.Message || "Parece que algo fallo, intenta de nuevo");
+
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="form-login">
             <h1>Ingresar</h1>
             <span>Ingresa tu correo y contraseña</span>
             <div className="caja">
@@ -75,6 +75,9 @@ const InicioSession = () => {
             
 
             <Link className="resetPass" to={"ResetPass"}>¿Olvidaste tu Contraseña?</Link>
+            <p className="login-pro">
+              ¿Eres psicólogo? <Link to="/RegistroProfesional" className="resetPass">Regístrate aquí</Link>
+            </p>
 
             <button type="submit" className="button">
                 Enviar
@@ -85,9 +88,7 @@ const InicioSession = () => {
             {
                 mutacion.isSuccess && <span>Hecho</span>
             }
-            {
-                mutacion.isError && <span>Parece que algo fallo, intenta de nuevo</span>
-            }
+            {mutacion.isError && <span>{errMsg}</span>}
 
 
         </form>

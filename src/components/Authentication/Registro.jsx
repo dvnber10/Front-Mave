@@ -19,28 +19,23 @@ const Registro = () => {
   // Llamada de mutacion
   const mutacion = NewUSer()
 
-  if (mutacion.isSuccess) {
-    // console.log(mutacion.data.data.location)
+  if (mutacion.isSuccess && mutacion.data?.data?.Id) {
     let usuario = mutacion.data.data.Id
-    
-    let token = mutacion.data.data.Token
     // se crea una cookie con el id de usuario 
     cook.set('id', usuario, { path: '/' })
-
-    cook.set('token', token , {path : '/' });
     // Se envia a la ruta de la encuesta con inicio de session 
     window.location = '/Encuesta'
   }
 
   if (mutacion.isError) {
-    console.log(mutacion.error.response.data)
+    console.log(mutacion.error?.response?.data ?? mutacion.error?.message ?? "Error de red o servidor")
   }
 
   const onSubmit = handleSubmit((data) => {
     mutacion.mutate(data)
   })
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="form-login">
       <h1>Crear Cuenta</h1>
       <span>Registrarse</span>
 

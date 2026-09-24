@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import {useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { GetAllUsersFromAdmin } from "../hooks/UserHook";
+import BackButton from "../components/BackButton";
 
 const AllUserAdmin= () =>{
     const navigate = new useNavigate()
@@ -15,8 +16,9 @@ const AllUserAdmin= () =>{
         navigate(`/OneUser/${index + 1}`); // Añade el índice al URL
     };
     return(
-        <div className="rp-cont">
+        <div>
       <Navbar />
+      <BackButton />
       <h1>Listado de usuarios</h1>
       <div id="article-m" className="scrollable">
         <div id="aricle-mar">

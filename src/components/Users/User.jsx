@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/OneArticle.css"; // Archivo de estilos CSS
 import Navbar from "../Navbar";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 //import articulos from "./articulosData";
 import Cookies from "universal-cookie";
-import { GetAllUsersFromAdmin, updateUser } from "../../hooks/UserHook";
+import { GetAllUsersFromAdmin, updateUser, GetUser, GetPsyProfileData, verifyPsy, blockUser } from "../../hooks/UserHook";
 import Swal from "sweetalert2";
 import { MdMargin } from "react-icons/md";
 import { IdUser } from "../../querys/Notify.query";
+import BackButton from "../BackButton";
 
 const OneUsers = () => {
 
@@ -64,13 +65,7 @@ const OneUsers = () => {
       return; // Detener el envío del formulario si algún campo está vacío
     }
 
-    var rol = 3
-    if ( role  == "Administrador") {
-      rol = rol-1
-    }
-    if ( role  == "Usuario") {
-      rol = rol+1
-    }
+    const rol = Number(Object.keys(roleMap).find(key => roleMap[key] === role));
 
     const data = {
       Id: user.userId,
@@ -81,14 +76,56 @@ const OneUsers = () => {
 
   const user = users[indiceArticulo];
   const roleMap = {
-    2: "Administrador",
-    4: "Usuario",
-    3: "Psicologo",
-
+      1: "SuperAdmin",
+      2: "Administrador",
+      3: "Psicologo",
+      4: "Usuario",
+    };
+  const viewerQ = GetUser(cook);
+  const viewerRole = viewerQ.isSuccess ? viewerQ.data.data.RoleId : null;
+  const psyQ = GetPsyProfileData(user?.userId);
+  const mutVerify = verifyPsy();
+  const mutBlock = blockUser();
+  const toggleBlock = async () => {
+    if (!user) return;
+    try {
+      await mutBlock.mutateAsync({ userId: user.userId, blocked: user.statusId === 1 });
+      Swal.fire({
+        title: user.statusId === 1 ? "Cuenta bloqueada" : "Cuenta desbloqueada",
+        icon: "success",
+        confirmButtonColor: "#1B5091",
+      });
+    } catch {
+      Swal.fire({
+        title: "No se pudo cambiar el estado",
+        icon: "error",
+        confirmButtonColor: "#1B5091",
+      });
+    }
+  };
+  const toggleVerify = async () => {
+    if (!user) return;
+    const cur = psyQ.isSuccess ? !!psyQ.data.data.verified : false;
+    try {
+      await mutVerify.mutateAsync({ userId: user.userId, verified: !cur });
+      psyQ.refetch();
+      Swal.fire({
+        title: !cur ? "Psicólogo verificado" : "Verificación retirada",
+        icon: "success",
+        confirmButtonColor: "#1B5091",
+      });
+    } catch {
+      Swal.fire({
+        title: "No autorizado o falló la verificación",
+        icon: "error",
+        confirmButtonColor: "#1B5091",
+      });
+    }
   };
   return (
     <div className="rp-cont">
       <Navbar />
+      <BackButton />
       <div id="article">
         <div id="div-titulo">
           <h2 id="titulo">{isSuccess && user.userName}</h2>
@@ -132,6 +169,30 @@ const OneUsers = () => {
           }
         </form>
       </div>
+
+      {isSuccess && user && (
+        <div style={{ display: "flex", justifyContent: "center", margin: "12px 0" }}>
+          <Link to={`/Report/${user.userId}`}>
+            <button id="form-btn" type="button">Ver reporte clínico</button>
+          </Link>
+        </div>
+      )}
+
+      {(viewerRole === 1 || viewerRole === 2) && isSuccess && user && user.roleId === 3 && (
+        <div style={{ display: "flex", justifyContent: "center", margin: "12px 0" }}>
+          <button id="form-btn" type="button" disabled={mutVerify.isPending} onClick={toggleVerify}>
+            {psyQ.isSuccess && psyQ.data.data.verified ? "Quitar verificación" : "Verificar psicólogo"}
+          </button>
+        </div>
+      )}
+
+      {(viewerRole === 1 || viewerRole === 2) && isSuccess && user && (
+        <div style={{ display: "flex", justifyContent: "center", margin: "12px 0" }}>
+          <button id="form-btn" type="button" disabled={mutBlock.isPending} onClick={toggleBlock}>
+            {user.statusId === 1 ? "Bloquear cuenta" : "Desbloquear cuenta"}
+          </button>
+        </div>
+      )}
 
       <div id="controles">
         <button onClick={mostrarArticuloAnterior}>Anterior</button>

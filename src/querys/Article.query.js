@@ -1,35 +1,24 @@
-import axios from "axios";
+import api from "./api";
 import Cookies from "universal-cookie";
 import { URL } from "./Auth.query";
 
 const cook = new Cookies()
 
-const tokenA = cook.get(`token`)
 const idUser = cook.get(`id`)
 export async function GetArticles(id) {
-    return await axios.get(`${URL}/Article/GetArticles/${id}`,
-        {
-            headers: {
-                Authorization: `Bearer ${tokenA}`
-            }
-        })
+    return await api.get(`${URL}/Article/GetArticles/${id}`)
 }
 export async function AddArticle(data) {
-    return await axios.post(`${URL}/Article/PostArticle/${idUser}`,
-        {
-            articleName: data.title,
-            resume: data.resume,
-            link: data.link,
-            type: 1,
-            year: 2024,
-            month: 5,
-            day: 9,
-            image: data.image
-        },
-        {
-            headers: {
-                Authorization: `Bearer ${tokenA}`,
-                "Content-Type":"multipart/form-data"
-            }
-        })
+    /* multipart/form-data real: el File viaja como binario, no como JSON */
+    const fd = new FormData();
+    const d = new Date(data.publicationDate);
+    fd.append("articleName", data.title);
+    fd.append("resume", data.resume);
+    fd.append("link", data.link);
+    fd.append("type", "1");
+    fd.append("year", String(d.getFullYear()));
+    fd.append("month", String(d.getMonth() + 1));
+    fd.append("day", String(d.getDate()));
+    fd.append("image", data.image);
+    return await api.post(`${URL}/Article/PostArticle/${idUser}`, fd)
 }

@@ -6,6 +6,7 @@ import Navbar from "../Navbar";
 import "../../styles/Creation.css";
 import articulos from "./articulosData";
 import { SetArticle } from "../../hooks/Article";
+import BackButton from "../BackButton";
 
 const Update = () => {
   const navigate = useNavigate(); // °3°useNavigate para poder navegar entre pestañas
@@ -72,6 +73,7 @@ const handleSubmit = (e) => {
 return (
   <div className="rp-cont">
     <Navbar />
+    <BackButton />
     <h1>Actualizacion del Recurso</h1>
     <form onSubmit={handleSubmit}>
       <div className="form-cam">

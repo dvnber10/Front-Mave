@@ -1,17 +1,17 @@
-import axios from "axios"
+import api from "./api"
 import { URL } from "./Auth.query"
 
 
 // reset password desde mail
 export async function ResetPass(data) {
-    return await axios.post(`${URL}/User/PasswordRecovery`, {
+    return await api.post(`${URL}/User/PasswordRecovery`, {
         data: data.email
     })
 }
 
 //Recibe la nueva contreseña y la cambia
 export async function CambioPass(data) {
-    return await axios.put(`${URL}/User/PasswordReset/${data.id}`,
+    return await api.put(`${URL}/User/PasswordReset/${data.id}`,
         {
             data: data.data.pass
         },

@@ -1,37 +1,186 @@
-g.recharts-layer.recharts-pie {
-    width: 500px;
-    height: 600px;
-}
-
-.recharts-responsive-container {
-    width: 500px;
-    height: 600px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Lilita+One&display=swap');
 
 #cont-graphic {
+    background: transparent;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e8ecf1;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding-bottom: 40px;
+    overflow-x: hidden;
+}
+
+#h1-que {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    color: #f8fafc;
+    margin: 20px 0 15px 0;
     text-align: center;
 }
 
+/* --- Leyenda de Caras (Responsive Grid / Flex) --- */
 #face {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    /* Alinea los elementos horizontalmente en el centro */
     align-items: center;
-    /* Alinea los elementos verticalmente en el centro */
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 14px;
+    width: 90%;
+    max-width: 650px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    box-shadow: 0 15px 35px rgba(2, 6, 23, 0.4);
 }
 
 .image-container {
-    margin: 0 10px;
-    /* Agrega un margen entre las imágenes y sus descripciones */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 70px;
+    max-width: 90px;
 }
+
 .svg-image {
-height: auto; /* Altura automática para mantener la proporción */
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    transition: transform 0.2s ease;
+}
+
+.svg-image:hover {
+    transform: scale(1.12);
 }
 
 .description {
-    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-align: center;
+    font-family: 'Manrope', system-ui, sans-serif;
 }
 
-#h1-que{
-    margin-top: 2%;
+/* --- Contenedor del Gráfico de Pastel (PieChart) --- */
+.recharts-responsive-container {
+    width: 100% !important;
+    max-width: 450px;
+    height: 320px !important;
+    margin: 0 auto;
+}
+
+.Loading {
+    display: block;
+    margin: 50px auto;
+    width: 50px;
+}
+
+/* --- Análisis psicológico del seguimiento --- */
+.mood-analysis {
+    width: 90%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 6px;
+}
+
+.mood-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.mood-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.mood-stat span {
+    font-size: 12.5px;
+    color: #a6b1d6;
+}
+
+.mood-stat b {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.mood-stat small {
+    font-size: 12px;
+    color: #a6b1d6;
+}
+
+.mood-trend {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 22px;
+}
+
+.mood-h2 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.mood-phq {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 126, 182, 0.4);
+    background: rgba(255, 126, 182, 0.10);
+    color: #eef2ff;
+    text-decoration: none;
+    font-size: 14.5px;
+}
+
+.mood-phq b {
+    color: #ff7eb6;
+}
+
+.mood-go {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ff7eb6;
+    white-space: nowrap;
+}
+
+.mood-note {
+    font-size: 12.5px;
+    color: #a6b1d6;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 560px) {
+    .mood-stats {
+        grid-template-columns: 1fr 1fr;
+    }
 }

@@ -4,132 +4,132 @@ import { GetGraficsIni } from "../../hooks/Grafics";
 import Cookies from "universal-cookie";
 import "../../styles/HeaderPrint.css";
 import "../../styles/OneArticle.css";
-import NavBar from "../Navbar"
+import NavBar from "../Navbar";
+import BackButton from "../BackButton";
 import ReactDOM from "react-dom";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function GraphicsInitial() {
   const navigate = useNavigate();
-  const cook = new Cookies()
-  let idUsuario = cook.get('id')
-  const { data: result, isSuccess, isLoading } = GetGraficsIni(idUsuario)
-  /* Cookie */
-  /* import Cookies from "universal-cookie"; */
+  const cook = new Cookies();
+  let idUsuario = cook.get('id');
+  const { data: result, isSuccess, isLoading } = GetGraficsIni(idUsuario);
+
   useEffect(() => {
     if (!cook) {
-      navigate('/time-out') // Hay que crear la ruta time out que es el cierre de sesioón
+      navigate('/time-out');
     }
-  }, [])
-  /* Cookie */
+  }, [cook, navigate]);
+
   const data = [
     {
       subject: 'Dominante',
-      desc: 'Las personas dominantes se caracterizan por tener energía desbordante, seguridad en sí mismos y tono de voz fuerte, manifestando una actitud segura y dominante al caminar, hablar en reuniones o participar en seminarios. Su vestimenta refleja poder y autoridad, y su manera de expresarse es directa y mandona. En la oficina, destacan por su liderazgo y capacidad para enfocarse en una meta final, pero pueden ser egocéntricos, explosivos, mandones, manipuladores e impacientes, aunque también destacan por su perseverancia, energía y visión de superación.',
-      A: isSuccess && result.data.d,
+      desc: 'Las personas dominantes se caracterizan por tener energía desbordante, seguridad en sí mismos y tono de voz fuerte, manifestando una actitud segura y dominante al caminar, hablar en reuniones o participar en seminarios.',
+      A: isSuccess && result?.data?.d ? result.data.d : 0,
       fullMark: 21,
-      tooltip: 'Se caracterizan por tener energía desbordante, seguridad en sí mismos y tono de voz fuerte, manifestando una actitud segura y dominante al caminar, hablar en reuniones o participar en seminarios.',
     },
     {
       subject: 'Estable',
-
-      desc: 'Las personas estables se caracterizan por su tranquilidad, adaptabilidad y lentitud en hablar y caminar, mostrándose discretos y callados en reuniones. En seminarios, muestran interés genuino por aprender y una humildad notable. Su vestimenta es conservadora y su expresión calmada y gentil. En la oficina, se mantienen tranquilos y entregados a sus tareas. Tienen una gran paciencia y capacidad para escuchar, contagian paz y estabilidad. Sin embargo, pueden ser inseguros para expresar sus opiniones, desmotivados sin afirmación constante, y tienden a evitar el riesgo y la novedad, siendo indecisos en la toma de decisiones.',
-      A: isSuccess && result.data.s,
+      desc: 'Las personas estables se caracterizan por su tranquilidad, adaptabilidad y lentitud en hablar y caminar, mostrándose discretos y callados en reuniones con una humildad notable.',
+      A: isSuccess && result?.data?.s ? result.data.s : 0,
       fullMark: 21,
-      tooltip: 'Se caracterizan por su tranquilidad, adaptabilidad y lentitud en hablar y caminar, mostrándose discretos y callados en reuniones. En seminarios, muestran interés genuino por aprender y una humildad notable.',
     },
     {
       subject: 'Concienzudo',
-      desc: 'La persona concienzuda se distingue por hablar con fundamentos y cuidar su aspecto físico. Camina directo a su destino, observa detalladamente en reuniones y toma apuntes ordenados en seminarios. Su vestimenta es sobria y elegante, y su manera de expresarse es directa y clara. En la oficina, evita juegos de poder y se mantiene éticamente comprometida. Tiene un fuerte sentido del compromiso, es considerada y valora la dimensión espiritual de la vida. Sin embargo, tiende a tener expectativas irreales, ser aprehensiva, terca, pesimista y perfeccionista.',
-      A: isSuccess && result.data.c,
-
+      desc: 'La persona concienzuda se distingue por hablar con fundamentos y cuidar su aspecto físico. Camina directo a su destino, observa detalladamente y toma apuntes ordenados.',
+      A: isSuccess && result?.data?.c ? result.data.c : 0,
       fullMark: 21,
-      tooltip: 'Se distingue por hablar con fundamentos y cuidar su aspecto físico. Camina directo a su destino, observa detalladamente en reuniones y toma apuntes ordenados en seminarios.',
     },
     {
       subject: 'Influyente',
-
-      desc: 'Las personas influyentes se destacan por su alegría, charlas constantes y amistosas, pero también por su impuntualidad y distracción. Son reconocibles porque suelen cantar o hablar solos al caminar, atraen a la gente en reuniones y seminarios, y prefieren ropa creativa y colores llamativos. Se expresan con gestos y gesticulaciones constantes, y rara vez se encuentran en sus escritorios en la oficina, prefiriendo socializar. Su sentido del gusto está muy desarrollado. Son juguetones, optimistas y entusiastas, encontrando la diversión en todo. Sin embargo, tienden a ser olvidadizos, distraídos, evasivos, exagerados y desorganizados, con dificultad para concluir proyectos iniciados.',
-      A: isSuccess && result.data.i,
+      desc: 'Las personas influyentes se destacan por su alegría, charlas constantes y amistosas, prefiriendo ropa creativa, colores llamativos y socializar constantemente.',
+      A: isSuccess && result?.data?.i ? result.data.i : 0,
       fullMark: 21,
-      tooltip: 'Se destacan por su alegría, charlas constantes y amistosas, pero también por su impuntualidad y distracción.',
     },
   ];
 
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const [tooltipContent, setTooltipContent] = useState(null);
   const tooltipRef = useRef(null);
-  const handleGenerarReporte =()=>{
-    navigate('/Report') 
-  }
 
-  function getTooltipPosition(subject) {
-    switch (subject) {
-      case 'Dominante':
-        return { y: '25%', x: '57%' };
-      case 'Estable':
-        return { y: '70%', x: '57%' };
-      case 'Concienzudo':
-        return { y: '21%', x: '70%' };
-      case 'Influyente':
-        return { y: '23%', x: '21%' };
-      default:
-        return { y: 580, x: 0 };
-    }
-  }
+  const handleGenerarReporte = () => {
+    navigate('/Report');
+  };
 
-  function CustomTooltip({ active, payload, label }) {
-    if (active && payload && payload.length) {
-      const subject = payload[0].payload.subject;
-      const desc = payload[0].payload.desc;
-      const position = getTooltipPosition(subject);
-      setTooltipPosition(position);
-      setTooltipContent(desc);
-    } else {
-      setTooltipContent(null);
-    }
+  // Coordenadas dinámicas basadas en la posición del mouse para evitar desbordes
+  const CustomTooltip = ({ active, payload }) => {
+    useEffect(() => {
+      if (active && payload && payload.length) {
+        setTooltipContent(payload[0].payload.desc);
+      } else {
+        setTooltipContent(null);
+      }
+    }, [active, payload]);
+
     return null;
   };
 
+  const handleMouseMove = (e) => {
+    if (tooltipContent) {
+      setTooltipPosition({
+        x: e.clientX + 15,
+        y: e.clientY + 15,
+      });
+    }
+  };
+
   return (
-    <div className="todo">
+    <div>
+      <NavBar />
+      <BackButton />
+    
+    <div className="todo" onMouseMove={handleMouseMove}>
+      
       <div className="Container">
-        <NavBar />
+        
         <header className="header-print">
-          <h1 className="mave-print">Estadisticas Iniciales</h1>
+          <h1 className="mave-print">Estadísticas Iniciales</h1>
         </header>
       </div>
+      
       <span>
-        {
-          isLoading ? <span><img className="Loading" src="https://mvalma.com/inicio/public/include/img/ImagenesTL/paginaTL/Cargando.gif" alt="Cargando" /></span>
-            :
-            <ResponsiveContainer width={600} height={300} aspect={1}>
-              <RadarChart outerRadius="90%" data={data} margin={{ top: 3, right: 3, bottom: 3, left: 3 }}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="subject" tick={{ fill: 'white', fontSize: 18, stroke: 'black', strokeWidth: 0.1 }} />
-                <PolarRadiusAxis />
-                <Tooltip content={<CustomTooltip />} />
-                <Radar name="UserName" dataKey="A" stroke="#FFFFFF" fill="#FFA74F" fillOpacity={0.8} />
-              </RadarChart>
-            </ResponsiveContainer>
-        }
-      </span >
+        {isLoading ? (
+          <img className="Loading" src="https://mvalma.com/inicio/public/include/img/ImagenesTL/paginaTL/Cargando.gif" alt="Cargando" />
+        ) : (
+          <ResponsiveContainer width="100%" aspect={1.1}>
+            <RadarChart outerRadius="75%" data={data} margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
+              <PolarGrid stroke="rgba(255, 255, 255, 0.15)" />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: '#e2e8f0', fontSize: 14, fontFamily: 'Manrope' }} />
+              <PolarRadiusAxis stroke="rgba(255, 255, 255, 0.2)" />
+              <Tooltip content={<CustomTooltip />} />
+              <Radar name="Perfil" dataKey="A" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.5} />
+            </RadarChart>
+          </ResponsiveContainer>
+        )}
+      </span>
+
       {tooltipContent && ReactDOM.createPortal(
         <div
           className="custom-tooltip"
           style={{
-            left: tooltipPosition.x,
-            top: tooltipPosition.y,
+            left: `${tooltipPosition.x}px`,
+            top: `${tooltipPosition.y}px`,
           }}
           ref={tooltipRef}
         >
           <p style={{ margin: 0 }}>{tooltipContent}</p>
         </div>,
         document.body
-      )
-      }
-      <button className="button" onClick={handleGenerarReporte}> Generar Reporte </button>
-    </div >
+      )}
+
+      <button className="button" onClick={handleGenerarReporte}>
+        Generar Reporte
+      </button>
+    </div>
+    </div>
   );
 }
+
+GraphicsInitial.displayName = "GraphicsInitial";
 
 export default GraphicsInitial;

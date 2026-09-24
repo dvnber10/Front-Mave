@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap');
+
+/* ============================================================
+   MAVE · Bienestar PHQ-4 (mockup glass, una sola capa)
+   Clases únicas .phq-* (sin colisiones globales).
+   ============================================================ */
+
+.phq-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 26px 26px 60px;
+    font-family: 'Inter', system-ui, sans-serif;
+    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
+    min-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+
+.phq-card {
+    background: rgba(255, 255, 255, 0.065);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 24px 70px rgba(2, 6, 23, 0.55);
+    padding: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: #eef2ff;
+}
+
+.phq-kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ff7eb6;
+    font-weight: 700;
+}
+
+.phq-h1 {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.phq-dim {
+    color: #a6b1d6;
+    font-size: 14.5px;
+    margin: 0;
+}
+
+.phq-qbar {
+    height: 8px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.phq-qbar i {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #34d3b0, #8b9bff);
+    transition: width 0.3s ease;
+}
+
+.phq-q {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 12px 0 6px;
+}
+
+.phq-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.phq-opt {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.05);
+    color: #eef2ff;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-align: left;
+}
+
+.phq-opt:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.phq-opt.sel {
+    border-color: rgba(255, 126, 182, 0.6);
+    background: rgba(255, 126, 182, 0.12);
+}
+
+.phq-opt .phq-k {
+    min-width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    background: rgba(139, 155, 255, 0.18);
+    color: #8b9bff;
+}
+
+.phq-error {
+    color: #ff7eb6;
+    font-size: 13.5px;
+    margin: 0;
+}
+
+.phq-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.phq-btn {
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 26px;
+    transition: all 0.2s ease;
+}
+
+.phq-btn.primary {
+    background: linear-gradient(120deg, #34d3b0, #8b9bff);
+    color: #081022;
+    border: none;
+    box-shadow: 0 10px 30px rgba(52, 211, 176, 0.35);
+}
+
+.phq-btn.primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.phq-btn.primary:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.phq-btn.ghost {
+    background: rgba(255, 255, 255, 0.10);
+    color: #eef2ff;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.phq-btn.ghost:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.phq-total {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    text-align: center;
+    color: #eef2ff;
+}
+
+.phq-total small {
+    font-size: 22px;
+    color: #a6b1d6;
+}
+
+.phq-band {
+    align-self: center;
+    padding: 7px 22px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.phq-band.mínima { background: rgba(52, 211, 176, 0.15); color: #7ff0cf; }
+.phq-band.leve { background: rgba(255, 206, 122, 0.15); color: #ffce7a; }
+.phq-band.moderada { background: rgba(139, 155, 255, 0.18); color: #8b9bff; }
+.phq-band.severa { background: rgba(255, 126, 182, 0.18); color: #ff7eb6; }
+
+.phq-subs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.phq-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    text-align: center;
+}
+
+.phq-sub span {
+    font-size: 12.5px;
+    color: #a6b1d6;
+}
+
+.phq-sub b {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 22px;
+}
+
+.phq-note {
+    font-size: 13px;
+    color: #a6b1d6;
+    line-height: 1.6;
+    text-align: center;
+    margin: 4px 0 0;
+}
+
+@media (max-width: 600px) {
+    .phq-card {
+        padding: 28px 22px;
+    }
+}

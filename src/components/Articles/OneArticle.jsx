@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 //import articulos from "./articulosData";
 import Cookies from "universal-cookie";
 import { GetAllArticles } from "../../hooks/Article";
+import BackButton from "../BackButton";
 
 const OneArticle = () => {
 
@@ -51,6 +52,7 @@ const articulos = isSuccess && result.data;
   return (
     <div className="rp-cont">
       <Navbar />
+      <BackButton />
       <div id="article">
         <div id="div-titulo">
           <h2 id="titulo">{isSuccess && articulo.articleName}</h2>
@@ -61,6 +63,19 @@ const articulos = isSuccess && result.data;
           id="imagen-articulo"
         />
         <h2 id="date">{isSuccess && articulo.date}</h2>
+        {isSuccess && articulo && /\.pdf(\?|$)/i.test(articulo.link || "") ? (
+          <div className="pdf-viewer">
+            <iframe src={articulo.link} title={articulo.articleName} />
+            <a
+              href={articulo.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="boton-ver-sec"
+            >
+              Abrir en pestaña ↗
+            </a>
+          </div>
+        ) : (
         <a
           href={isSuccess && articulo.link}
           target="_blank"
@@ -69,6 +84,7 @@ const articulos = isSuccess && result.data;
         >
           Ver
         </a>
+        )}
       </div>
       <div id="controles">
         <button onClick={mostrarArticuloAnterior}>Anterior</button>
