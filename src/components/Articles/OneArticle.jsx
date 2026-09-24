@@ -92,7 +92,7 @@ const articulos = isSuccess && result.data;
           <p>
             {indiceArticulo + 1}/{articulos.length}
             <img
-              src="../../src/image/icon/list.svg"
+              src="/image/icon/list.svg"
               alt=""
               id="list-oneArticle"
             />

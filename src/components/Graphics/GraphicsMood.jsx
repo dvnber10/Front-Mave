@@ -81,23 +81,23 @@ function GraphicsMood() {
       
       <div id="face">
         <div className="image-container">
-          <img src="./src/image/Graphics/face1.svg" alt="Face 1" className="svg-image" />
+          <img src="/image/Graphics/face1.svg" alt="Face 1" className="svg-image" />
           <div className="description">Muy Bueno</div>
         </div>
         <div className="image-container">
-          <img src="./src/image/Graphics/face2.svg" alt="Face 2" className="svg-image" />
+          <img src="/image/Graphics/face2.svg" alt="Face 2" className="svg-image" />
           <div className="description">Bueno</div>
         </div>
         <div className="image-container">
-          <img src="./src/image/Graphics/face3.svg" alt="Face 3" className="svg-image" />
+          <img src="/image/Graphics/face3.svg" alt="Face 3" className="svg-image" />
           <div className="description">Regular</div>
         </div>
         <div className="image-container">
-          <img src="./src/image/Graphics/face4.svg" alt="Face 4" className="svg-image" />
+          <img src="/image/Graphics/face4.svg" alt="Face 4" className="svg-image" />
           <div className="description">Malo</div>
         </div>
         <div className="image-container">
-          <img src="./src/image/Graphics/face5.svg" alt="Face 5" className="svg-image" />
+          <img src="/image/Graphics/face5.svg" alt="Face 5" className="svg-image" />
           <div className="description">Muy Malo</div>
         </div>
       </div>

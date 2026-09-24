@@ -67,7 +67,7 @@ const MoodMonitoring = () => {
           <div className="radio-tile">
             <div className="face">
               <img
-                src="./src/image/MoodMonitoring/face1.svg"
+                src="/image/MoodMonitoring/face1.svg"
                 alt="Face 1"
                 className="svg-image"
               />
@@ -89,7 +89,7 @@ const MoodMonitoring = () => {
           />
           <div className="radio-tile">
             <div className="face">
-              <img src="./src/image/MoodMonitoring/face2.svg" alt="Face 2" />
+              <img src="/image/MoodMonitoring/face2.svg" alt="Face 2" />
             </div>
             <label htmlFor="face2" className="radio-tile-label">
               Bueno
@@ -108,7 +108,7 @@ const MoodMonitoring = () => {
           />
           <div className="radio-tile">
             <div className="face">
-              <img src="./src/image/MoodMonitoring/face3.svg" alt="Face 3" />
+              <img src="/image/MoodMonitoring/face3.svg" alt="Face 3" />
             </div>
             <label htmlFor="face3" className="radio-tile-label">
               Regular
@@ -127,7 +127,7 @@ const MoodMonitoring = () => {
           />
           <div className="radio-tile">
             <div className="face">
-              <img src="./src/image/MoodMonitoring/face4.svg" alt="Face 4" />
+              <img src="/image/MoodMonitoring/face4.svg" alt="Face 4" />
             </div>
             <label htmlFor="face4" className="radio-tile-label">
               Malo
@@ -146,7 +146,7 @@ const MoodMonitoring = () => {
           />
           <div className="radio-tile">
             <div className="face">
-              <img src="./src/image/MoodMonitoring/face5.svg" alt="Face 5" />
+              <img src="/image/MoodMonitoring/face5.svg" alt="Face 5" />
             </div>
             <label htmlFor="walk" className="radio-tile-label">
               Muy Malo

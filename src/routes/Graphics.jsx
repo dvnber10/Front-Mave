@@ -27,7 +27,7 @@ const Graphics = () => {
           <Link to="/GraphicsInitial">
             <div className="space-option">
               <img
-                src="./src/image/test.svg"
+                src="/image/test.svg"
                 className="option-icon"
                 alt="Test Inicial"
               />
@@ -38,7 +38,7 @@ const Graphics = () => {
           <Link to="/GraphicsMood">
             <div className="space-option">
               <img
-                src="./src/image/MoodMonitoring/face1.svg"
+                src="/image/MoodMonitoring/face1.svg"
                 className="option-icon"
                 alt="Seguimiento Anímico"
               />
@@ -49,7 +49,7 @@ const Graphics = () => {
           <Link to="/GraphicsActivity">
             <div className="space-option">
               <img
-                src="./src/image/Dashboard/calendar.svg"
+                src="/image/Dashboard/calendar.svg"
                 className="option-icon"
                 alt="Actividades"
               />
@@ -60,7 +60,7 @@ const Graphics = () => {
           <Link to="/GraphicsWellbeing">
             <div className="space-option">
               <img
-                src="./src/image/MoodMonitoring/face2.svg"
+                src="/image/MoodMonitoring/face2.svg"
                 className="option-icon"
                 alt="Bienestar PHQ-4"
               />

@@ -66,32 +66,32 @@ const Mindfulnes = () => {
 
         <div id="space-mind">
           <button className={`space-option${selected === 0 ? " sel" : ""}`} onClick={() => handleAdvice(0)}>
-            <img src="https://imgur.com/4GqlAew.png" className="option-icon" alt="Respiración" />
+            <img src="https://i.imgur.com/4GqlAew.png" className="option-icon" alt="Respiración" />
             <label>Respiración consciente</label>
           </button>
 
           <button className={`space-option${selected === 1 ? " sel" : ""}`} onClick={() => handleAdvice(1)}>
-            <img src="https://imgur.com/4yThqtw.png" className="option-icon" alt="Exploración" />
+            <img src="https://i.imgur.com/4yThqtw.png" className="option-icon" alt="Exploración" />
             <label>Exploración sensorial</label>
           </button>
 
           <button className={`space-option${selected === 2 ? " sel" : ""}`} onClick={() => handleAdvice(2)}>
-            <img src="https://imgur.com/vL07so6.png" className="option-icon" alt="Barrido" />
+            <img src="https://i.imgur.com/vL07so6.png" className="option-icon" alt="Barrido" />
             <label>Barrido corporal</label>
           </button>
 
           <button className={`space-option${selected === 3 ? " sel" : ""}`} onClick={() => handleAdvice(3)}>
-            <img src="https://imgur.com/wnFsSsp.png" className="option-icon" alt="Caminata" />
+            <img src="https://i.imgur.com/wnFsSsp.png" className="option-icon" alt="Caminata" />
             <label>Caminata consciente</label>
           </button>
 
           <button id="info" className="space-option" onClick={handleInfo}>
-            <img src="https://imgur.com/2I5LWRD.png" className="option-icon" alt="Información" />
+            <img src="https://i.imgur.com/2I5LWRD.png" className="option-icon" alt="Información" />
             <label>Saber más</label>
           </button>
 
           <button className={`space-option${selected === 4 ? " sel" : ""}`} onClick={() => handleAdvice(4)}>
-            <img src="https://imgur.com/jCXtRBd.png" className="option-icon" alt="Escucha" />
+            <img src="https://i.imgur.com/jCXtRBd.png" className="option-icon" alt="Escucha" />
             <label>Escucha activa</label>
           </button>
         </div>

@@ -200,7 +200,7 @@ const OneUsers = () => {
           <p>
             {indiceArticulo + 1}/{users.length}
             <img
-              src="../../src/image/icon/list.svg"
+              src="/image/icon/list.svg"
               alt=""
               id="list-oneArticle"
             />

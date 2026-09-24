@@ -87,7 +87,7 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="nav_logo">
-        <img src="https://imgur.com/C86LPG8.png" alt="" className="Logo" />
+        <img src="https://i.imgur.com/C86LPG8.png" alt="" className="Logo" />
       </div>
       <h1 id="mave">MAVE</h1>
       {userRole !== 3 && (
@@ -102,7 +102,7 @@ function Navbar() {
       <div className="nav_items">
         <Link to="/Dashboard">
           <a href="#" className="items">
-            <img src="https://imgur.com/JBl68w8.png" alt="" className="Logo" />
+            <img src="https://i.imgur.com/JBl68w8.png" alt="" className="Logo" />
           </a>
         </Link>
 
@@ -112,7 +112,7 @@ function Navbar() {
 
         <div className="notif-wrap">
           <a href="#" className="items" onClick={(e) => { e.preventDefault(); setShowNotif(!showNotif); }}>
-            <img src="https://imgur.com/M4S6rkV.png" alt="" className="Logo" />
+            <img src="https://i.imgur.com/M4S6rkV.png" alt="" className="Logo" />
           </a>
           {showNotif && (
             <div className="notif-panel">
@@ -138,7 +138,7 @@ function Navbar() {
         </div>
 
         <a href="#" className="items" onClick={handleLogout}>
-          <img src="https://imgur.com/rvPskIN.png" alt="" className="Logo" />
+          <img src="https://i.imgur.com/rvPskIN.png" alt="" className="Logo" />
         </a>
       </div>
       {userRole !== 3 && (

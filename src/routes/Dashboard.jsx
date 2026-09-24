@@ -43,13 +43,13 @@ function Dashboard() {
         </Link>
         <Link to="/Chat">
           <button className="space-option">
-            <img src="./src/image/icon/bell.svg" className="option-icon" />
+            <img src="/image/icon/bell.svg" className="option-icon" />
             <label> Chat </label>
           </button>
         </Link>
         <Link to="/Texts">
           <button className="space-option">
-            <img src="https://imgur.com/JkSEd9K.png" className="option-icon" />
+            <img src="https://i.imgur.com/JkSEd9K.png" className="option-icon" />
             <label> Saber Más </label>
           </button>
         </Link>
@@ -62,7 +62,7 @@ function Dashboard() {
           {/* Juan por favor coloca donde se puede ver los habitos */}
           <button className="space-option">
             <img
-              src="./src/image/Dashboard/calendar.svg"
+              src="/image/Dashboard/calendar.svg"
               className="option-icon"
             />
             <label> Habitos </label>
@@ -71,7 +71,7 @@ function Dashboard() {
 
         <Link to="/MoodMonitoring">
           <button className="space-option">
-            <img src="./src/image/Dashboard/Mood.svg" className="option-icon" />
+            <img src="/image/Dashboard/Mood.svg" className="option-icon" />
             <label>
               {" "}
               Seguimiento <br></br> Anímico{" "}
@@ -81,7 +81,7 @@ function Dashboard() {
 
         <Link to="/Graphics">
           <button className="space-option">
-            <img src="https://imgur.com/BOsGxwv.png" className="option-icon" />
+            <img src="https://i.imgur.com/BOsGxwv.png" className="option-icon" />
             <label> Graficas </label>
           </button>
         </Link>
@@ -89,7 +89,7 @@ function Dashboard() {
         <Link to="/Mindfulness">
           <button className="space-option">
             <img
-              src="./src/image/Dashboard/Mindfulness.svg"
+              src="/image/Dashboard/Mindfulness.svg"
               className="option-icon"
             />
             <label> Mindfulness </label>
@@ -98,7 +98,7 @@ function Dashboard() {
         <Link to="/Caminata">
           <button className="space-option">
             <img
-              src="https://imgur.com/wnFsSsp.png"
+              src="https://i.imgur.com/wnFsSsp.png"
               className="option-icon"
             />
             <label> Caminata </label>
@@ -108,7 +108,7 @@ function Dashboard() {
         <Link to="/Meditation">
           <button className="space-option">
             <img
-              src="https://imgur.com/MmClulV.png"
+              src="https://i.imgur.com/MmClulV.png"
               className="option-icon"
             />
             <label> Meditación </label>
@@ -118,7 +118,7 @@ function Dashboard() {
         <Link to="/Bienestar">
           <button className="space-option">
             <img
-              src="./src/image/Dashboard/Mood.svg"
+              src="/image/Dashboard/Mood.svg"
               className="option-icon"
             />
             <label> Chequeo PHQ-4 </label>
@@ -128,7 +128,7 @@ function Dashboard() {
         <Link to="/Yoga">
           <button className="space-option">
             <img
-              src="./src/image/test.svg"
+              src="/image/test.svg"
               className="option-icon"
             />
             <label> Yoga </label>
@@ -138,7 +138,7 @@ function Dashboard() {
         <Link to="/Respiracion">
           <button className="space-option">
             <img
-              src="https://imgur.com/4GqlAew.png"
+              src="https://i.imgur.com/4GqlAew.png"
               className="option-icon"
             />
             <label> Respiración </label>
@@ -148,7 +148,7 @@ function Dashboard() {
         <Link to="/Escaneo">
           <button className="space-option">
             <img
-              src="https://imgur.com/vL07so6.png"
+              src="https://i.imgur.com/vL07so6.png"
               className="option-icon"
             />
             <label> Escaneo corporal </label>
@@ -157,7 +157,7 @@ function Dashboard() {
 
         <Link to="/Texts">
           <button className="space-option">
-            <img src="https://imgur.com/JkSEd9K.png" className="option-icon" />
+            <img src="https://i.imgur.com/JkSEd9K.png" className="option-icon" />
             <label> Saber Más </label>
           </button>
         </Link>
@@ -165,7 +165,7 @@ function Dashboard() {
         <Link to="/Profesionales">
           <button className="space-option">
             <img
-              src="./src/image/Dashboard/know.svg"
+              src="/image/Dashboard/know.svg"
               className="option-icon"
             />
             <label> Contactar profesional </label>
@@ -175,7 +175,7 @@ function Dashboard() {
         {(role === 1 || role === 2) && (
           <Link to="/Admin">
             <button className="space-option">
-              <img src="./src/image/test.svg" className="option-icon" />
+              <img src="/image/test.svg" className="option-icon" />
               <label> Administración </label>
             </button>
           </Link>)

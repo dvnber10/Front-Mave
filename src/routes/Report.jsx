@@ -122,7 +122,7 @@ function Report() {
             <div id="print-vis" className="report-content-wrapper">
                 <div className="report-header-section">
                     <img
-                        src="https://imgur.com/C86LPG8.png"
+                        src="https://i.imgur.com/C86LPG8.png"
                         alt="Logo MAVE"
                         className="report-logo"
                     />
